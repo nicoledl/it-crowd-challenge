@@ -1,0 +1,14 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  width: 100vw;
+  font-family: var(--font-montserrat);
+}
+input{
+  outline: none;
+}
+input:focus{
+  background-color: #e8e8e8;
+}
