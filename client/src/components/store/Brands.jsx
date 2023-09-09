@@ -43,7 +43,7 @@ const Brands = () => {
             <img
               className="cursor-pointer dark:invert"
               onClick={() => onClick(brand.id)}
-              src={brand.image_url}
+              src={brand?.image_url}
               alt={brand.name}
             />
           </div>

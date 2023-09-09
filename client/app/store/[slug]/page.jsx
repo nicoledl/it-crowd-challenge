@@ -25,7 +25,7 @@ const page = () => {
   if (!products) {
     return (
       <div
-        className="absolute top-0 bottom-0 left-0 right-0 m-auto h-screen w-screen justify-center flex items-center"
+        className="absolute top-0 bottom-0 left-0 right-0 m-auto h-screen justify-center flex items-center"
         style={{ alignItems: "center", zIndex: "-2" }}
       >
         <BeatLoader color="#ffff" size={25} />

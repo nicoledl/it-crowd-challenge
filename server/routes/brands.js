@@ -2,13 +2,16 @@ const express = require("express");
 const brandController = require("../controllers/brandController");
 const router = express.Router();
 
-// Obtener todas las marcas
+// get all brands
 router.get("/", brandController.getAllBrands);
 
-// Crear una nueva marca
+// create new brand
 router.post("/", brandController.createBrand);
 
-// Eliminar una marca por ID
+// modify brand
+router.put("/:id", brandController.updateBrand);
+
+// delete brand
 router.delete("/:id", brandController.deleteBrand);
 
 module.exports = router;

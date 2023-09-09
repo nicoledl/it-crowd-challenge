@@ -6,9 +6,20 @@ body {
   width: 100vw;
   font-family: var(--font-montserrat);
 }
-input{
+
+input,
+textarea {
   outline: none;
+  padding: 0 5px;
 }
-input:focus{
-  background-color: #e8e8e8;
+input:focus,
+textarea:focus {
+  background-color: #fcfcfc;
+}
+
+.add {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 50px;
 }

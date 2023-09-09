@@ -1,5 +1,7 @@
+import ProductsList from "@/components/admin/ProductsList";
+
 const page = () => {
-  return <div className="text-white">hola</div>;
+  return <ProductsList />;
 };
 
 export default page;

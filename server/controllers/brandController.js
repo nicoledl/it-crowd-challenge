@@ -11,7 +11,7 @@ async function getAllBrands(req, res) {
   }
 }
 
-// Crear una nueva marca
+// create new brand
 async function createBrand(req, res) {
   try {
     const { name, image_url } = req.body;
@@ -19,15 +19,37 @@ async function createBrand(req, res) {
       name,
       image_url,
     });
-    console.log('Brand created:', brand.toJSON());
+    console.log("Brand created:", brand.toJSON());
     res.status(201).json(brand);
   } catch (error) {
-    console.error('Error creating brand:', error);
-    res.status(500).json({ error: 'Error creating brand' });
+    console.error("Error creating brand:", error);
+    res.status(500).json({ error: "Error creating brand" });
   }
 }
 
-// Eliminar una marca
+// modify brand
+async function updateBrand(req, res) {
+  try {
+    const { name, image_url } = req.body;
+    await Brand.update(
+      {
+        name,
+        image_url,
+      },
+      {
+        where: {
+          id: req.params.id,
+        },
+      }
+    );
+    res.json({ message: "Brand was modify" });
+  } catch (error) {
+    console.error("Error al actualizar el producto:", error);
+    res.status(500).json({ error: "Error al actualizar el producto" });
+  }
+}
+
+// delete brand
 async function deleteBrand(req, res) {
   try {
     await Brand.destroy({
@@ -45,5 +67,6 @@ async function deleteBrand(req, res) {
 module.exports = {
   getAllBrands,
   createBrand,
+  updateBrand,
   deleteBrand,
 };

@@ -38,11 +38,11 @@ const Login = () => {
       const token = response.data.token;
       // Guarda el token en localStorage o en una cookie para usarlo en futuras solicitudes.
       localStorage.setItem("token", token);
-      // Redirige al usuario a la página de inicio o realiza otras acciones después del inicio de sesión.
-      window.location.href = "/admin"; // Cambia esto según tu aplicación.
+
+      window.location.href = "/admin";
     } catch (error) {
       setErrorMsg(true);
-      console.error("The User or Password are wrong.", error);
+      console.error("The username or password was wrong.", error);
     }
   };
 
@@ -54,7 +54,7 @@ const Login = () => {
           "drop-shadow-xl absolute text-yellow-800 bg-yellow-100 p-3 rounded top-[20%] mx-5 w-fit"
         } ${!errorMsg && "hidden"} transition duration-400 ease-in-out `}
       >
-        {"The User or Password are wrong."}
+        {"The username or password was wrong."}
       </div>
 
       <div className="grid gap-5 w-full px-5 md:w-[300px]">
