@@ -4,13 +4,14 @@ import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import EditBrandForm from "./EditBrandForm";
 import Navbar from "./Navbar";
-import Pagination from "../store/Pagination";
+import Pagination from "../common/Pagination";
 
 const ProductsList = () => {
   const [brands, setBrands] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
   const [page, setPage] = useState(1);
+  const [showAlert, setShowAlert] = useState(false);
 
   useEffect(() => {
     axios
@@ -22,7 +23,7 @@ const ProductsList = () => {
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
       });
-  }, [action]);
+  }, [action, page]);
 
   const deleteBrand = (id) => {
     axios
@@ -36,10 +37,24 @@ const ProductsList = () => {
     setAction(!action);
   };
 
+  const handleButtonClick = () => {
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  };
+
   return (
     <>
       <Navbar title="Brands Managment" />
-
+      {showAlert && (
+        <MessageAlert
+          title="Success"
+          content="The brand was eliminated correctly."
+          style="bg-lime-400 text-lime-50"
+        />
+      )}
       <div className="container mx-auto">
         <div className="grid divide-y">
           <div className="grid grid-cols-3 text-center py-3">
@@ -60,7 +75,11 @@ const ProductsList = () => {
                 <div>{brand.id}</div>
                 <div className="flex items-center gap-2">
                   <img
-                    src="https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+                    src={
+                      brand.image_url
+                        ? brand.image_url
+                        : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+                    }
                     alt={brand.name}
                     className="w-[50px] h-[50px] rounded-full object-cover"
                   />
@@ -81,7 +100,10 @@ const ProductsList = () => {
                   />
                   <TrashIcon
                     width={25}
-                    onClick={() => deleteBrand(brand.id)}
+                    onClick={() => {
+                      deleteBrand(brand.id);
+                      handleButtonClick();
+                    }}
                     className="cursor-pointer text-gray-700 hover:text-red-500"
                   />
                 </div>

@@ -41,6 +41,7 @@ async function searchProducts(req, res) {
   }
 }
 
+// get all products per page
 async function searchProductsPerPage(req, res) {
   const PRODUCTS_PER_PAGE = 15;
   try {

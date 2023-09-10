@@ -13,7 +13,6 @@ function verifyToken(req, res, next) {
       return res.status(401).json({ error: "Token no válido" });
     }
 
-    // El token es válido, puedes acceder a la información del usuario en decoded
     req.user = decoded;
     next();
   });

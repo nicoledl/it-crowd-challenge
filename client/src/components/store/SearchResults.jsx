@@ -1,5 +1,5 @@
 "use client";
-import Pagination from "@/components/store/Pagination";
+import Pagination from "@/components/common/Pagination";
 import Products from "@/components/store/Products";
 import axios from "axios";
 import { useEffect, useState } from "react";
@@ -16,7 +16,7 @@ const SearchResults = () => {
     if (!products) {
       try {
         axios
-          .get(`http://localhost:3000/api/search${search}&page=${page}`)
+          .get(`http://localhost:3000/api/search/page${search}&page=${page}`)
           .then((response) => setProducts(response.data));
       } catch (error) {
         console.error(error);
@@ -39,7 +39,7 @@ const SearchResults = () => {
       <Products products={products} />
       <Pagination
         setPage={setPage}
-        url={`http://localhost:3000/api/search/results${search}`}
+        url={`http://localhost:3000/api/search${search}`}
       />
     </div>
   );

@@ -1,7 +1,7 @@
 "use client";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import Pagination from "./Pagination";
+import Pagination from "../common/Pagination";
 
 const Brands = () => {
   const [brands, setBrands] = useState([]);
@@ -15,7 +15,7 @@ const Brands = () => {
   }, []);
 
   const onClick = (name) => {
-    window.location.href = `http://localhost:3001/store/search?keyword=${name}`;
+    window.location.href = `http://localhost:3001/store/search/page?keyword=${name}`;
   };
 
   return (
@@ -27,7 +27,11 @@ const Brands = () => {
               <img
                 className="cursor-pointer dark:invert"
                 onClick={() => onClick(brand.name)}
-                src={brand?.image_url}
+                src={
+                  brand.image_url
+                    ? brand.image_url
+                    : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+                }
                 alt={brand.name}
               />
             </div>

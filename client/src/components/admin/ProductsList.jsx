@@ -3,16 +3,40 @@ import { useEffect, useState } from "react";
 import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import EditProductForm from "./EditProductForm";
-import Navbar from "./Navbar";
-import Pagination from "../store/Pagination";
+import Pagination from "../common/Pagination";
+import MessageAlert from "../common/Message";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
   const [page, setPage] = useState(1);
+  const [showAlert, setShowAlert] = useState(false);
+  const [brands, setBrands] = useState(null);
+  const [sortBrand, setSortBrand] = useState(null);
+  const [paginationUrl, setPaginationUrl] = useState(
+    "http://localhost:3000/api/products/"
+  );
 
+  // products
   useEffect(() => {
+    if (sortBrand && sortBrand != "Select a brand") {
+      axios
+        .get(
+          `http://localhost:3000/api/search/page?keyword=${sortBrand}&page=${page}`
+        )
+        .then((response) => {
+          setProducts(response.data);
+          setAction(true);
+        })
+        .catch((error) => {
+          console.error("Error al obtener los datos:", error);
+        });
+
+      setPaginationUrl(`http://localhost:3000/api/search?keyword=${sortBrand}`);
+      return;
+    }
+
     axios
       .get(`http://localhost:3000/api/products/${page}`)
       .then((response) => {
@@ -22,12 +46,27 @@ const ProductsList = () => {
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
       });
-  }, [action]);
+
+    setPaginationUrl(`http://localhost:3000/api/products/`);
+  }, [action, page, sortBrand]);
+
+  // brands
+  useEffect(() => {
+    axios
+      .get("http://localhost:3000/api/brands")
+      .then((response) => {
+        setBrands(response.data);
+        setAction(true);
+      })
+      .catch((error) => {
+        console.error("Error al obtener los datos:", error);
+      });
+  }, []);
 
   const deleteProduct = (id) => {
     axios
       .delete(`http://localhost:3000/api/products/${id}`)
-      .then((response) => {
+      .then(() => {
         setProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== id)
         );
@@ -38,16 +77,44 @@ const ProductsList = () => {
     setAction(!action);
   };
 
+  const handleButtonClick = () => {
+    setShowAlert(true);
+
+    setTimeout(() => {
+      setShowAlert(false);
+    }, 3000);
+  };
+
+  const handleBrandSelected = (e) => {
+    const value = e.target.value;
+    setSortBrand(value);
+  };
+
   return (
     <>
-      <Navbar title="Products Managment" />
-
+      {showAlert && (
+        <MessageAlert
+          title="Success"
+          content="The product was eliminated correctly."
+          style="bg-lime-400 text-lime-50"
+        />
+      )}
+      <div className="grid w-fit my-6">
+        <select onChange={handleBrandSelected} className="rounded border p-1">
+          <option value={null}>Select a brand</option>
+          {brands?.map((brand) => (
+            <option key={brand.id} value={brand.name}>
+              {brand.name}
+            </option>
+          ))}
+        </select>
+      </div>
       <div className="container mx-auto">
         <div className="grid  divide-y">
-          <div className="grid grid-cols-5 sm:grid-cols-6 text-center py-3">
+          <div className="grid grid-cols-4 sm:grid-cols-6 text-center py-3">
             <div className="sm:block hidden">#</div>
             <div className="col-span-2">Name</div>
-            <div>Brand</div>
+            <div className="sm:block hidden">Brand</div>
             <div>Price</div>
             <div>Actions</div>
           </div>
@@ -59,18 +126,24 @@ const ProductsList = () => {
                   editWindowId
                     ? ""
                     : "dark:hover:bg-gray-100/30 hover:bg-gray-50"
-                } grid grid-cols-5 sm:grid-cols-6 text-center items-center h-fit py-1 `}
+                } grid grid-cols-4 sm:grid-cols-6 text-center items-center h-fit py-1 `}
               >
                 <div className="sm:block hidden">{product.id}</div>
                 <div className="flex col-span-2 items-center gap-2">
                   <img
-                    src="https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+                    src={
+                      products.image_url
+                        ? products.image_url
+                        : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+                    }
                     alt={product.name}
                     className="w-[50px] h-[50px] rounded-full object-cover sm:block hidden"
                   />
                   {product?.name}
                 </div>
-                <div>{product.brand ? product?.brand.name : ""}</div>
+                <div className="sm:block hidden">
+                  {product.brand ? product?.brand.name : ""}
+                </div>
                 <div>{product?.price}</div>
                 <div className="flex justify-center items-center">
                   <Cog6ToothIcon
@@ -87,7 +160,10 @@ const ProductsList = () => {
                   />
                   <TrashIcon
                     width={25}
-                    onClick={() => deleteProduct(product.id)}
+                    onClick={() => {
+                      deleteProduct(product.id);
+                      handleButtonClick();
+                    }}
                     className="cursor-pointer text-gray-700 hover:text-red-500"
                   />
                 </div>
@@ -103,7 +179,7 @@ const ProductsList = () => {
           })}
         </div>
       </div>
-      <Pagination setPage={setPage} url="http://localhost:3000/api/products/" />
+      <Pagination setPage={setPage} url={paginationUrl} />
     </>
   );
 };

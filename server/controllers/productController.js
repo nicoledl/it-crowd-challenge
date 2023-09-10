@@ -27,6 +27,10 @@ async function getProductsPerPage(req, res) {
     const products = await Product.findAll({
       limit: PRODUCTS_PER_PAGE,
       offset: offset,
+      include: {
+        model: Brand,
+        attributes: ["name", "image_url"],
+      },
     });
 
     res.json(products);
@@ -106,25 +110,6 @@ async function deleteProduct(req, res) {
   }
 }
 
-async function getAllByBrand(req, res) {
-  try {
-    const { id } = req.params;
-    const products = await Product.findAll({
-      where: {
-        brandId: id,
-      },
-      include: {
-        model: Brand,
-        attributes: ["name", "image_url"],
-      },
-    });
-    res.json(products);
-  } catch (error) {
-    console.error("Error al buscar productos por brandId:", error);
-    res.status(500).json({ error: "Error al buscar productos por brandId" });
-  }
-}
-
 module.exports = {
   getAllProducts,
   getProductsPerPage,
@@ -132,5 +117,4 @@ module.exports = {
   getProductById,
   updateProduct,
   deleteProduct,
-  getAllByBrand,
 };

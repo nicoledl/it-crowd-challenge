@@ -20,7 +20,7 @@ const Pagination = ({ setPage, url }) => {
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
       });
-  }, [action]);
+  }, [action, url]);
 
   const scrollToTop = () => {
     window.scrollTo({

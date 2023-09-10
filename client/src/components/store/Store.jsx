@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import Products from "./Products";
 import axios from "axios";
-import Pagination from "./Pagination";
+import Pagination from "../common/Pagination";
 
 const Store = () => {
   const [productsPerPage, setProductsPerPage] = useState([]);

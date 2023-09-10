@@ -1,14 +1,16 @@
-// import Image from "next/image";
 import { TagIcon } from "@heroicons/react/24/solid";
 
 const Item = ({ product }) => {
   const { image_url, name, price, brand, id } = product;
   return (
     <div className="border border-gray-100 bord drop-shadow-3xl m-0 p-0 bg-white dark:bg-gray-500 dark:drop-shadow-4xl dark:border-none hover:bg-slate-100 ease-out duration-300 w-full h-[280px] hover:scale-105 relative rounded">
-      {/* <Image src={image_url} width={50} height={50} /> */}
       <img
         className="w-full object-cover h-[220px] rounded-t-sm"
-        src="https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+        src={
+          image_url
+            ? image_url
+            : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
+        }
         alt="img-default"
       />
       <div className="grid gap-1 align-center px-3 font-bold">

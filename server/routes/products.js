@@ -20,7 +20,6 @@ router.put("/:id", productController.updateProduct);
 // delete product
 router.delete("/:id", productController.deleteProduct);
 
-// get all by brand id
-router.get("/brand-id/:id", productController.getAllByBrand);
+
 
 module.exports = router;

@@ -12,7 +12,7 @@ const SearchInput = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      window.location.href = `http://localhost:3001/store/search?keyword=${inputValue}`;
+      window.location.href = `http://localhost:3001/store/search/page?keyword=${inputValue}`;
     }
   };
 
