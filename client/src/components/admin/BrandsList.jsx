@@ -7,6 +7,8 @@ import Navbar from "./Navbar";
 import Pagination from "../common/Pagination";
 
 const ProductsList = () => {
+  const token = localStorage.getItem("token");
+
   const [brands, setBrands] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
@@ -15,7 +17,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/brands/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${page}`)
       .then((response) => {
         setBrands(response.data);
         setAction(true);
@@ -27,7 +29,11 @@ const ProductsList = () => {
 
   const deleteBrand = (id) => {
     axios
-      .delete(`http://localhost:3000/api/brands/${id}`)
+      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
         setBrands(response.data);
       })
@@ -56,7 +62,7 @@ const ProductsList = () => {
         />
       )}
       <div className="container mx-auto">
-        <div className="grid divide-y">
+        <div className="grid divide-y dark:divide-black">
           <div className="grid grid-cols-3 text-center py-3">
             <div>#</div>
             <div>Name</div>
@@ -119,7 +125,10 @@ const ProductsList = () => {
           })}
         </div>
       </div>
-      <Pagination setPage={setPage} url="http://localhost:3000/api/brands/" />
+      <Pagination
+        setPage={setPage}
+        url={`${process.env.NEXT_PUBLIC_URL_BASE}/brands/`}
+      />
     </>
   );
 };

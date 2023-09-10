@@ -7,6 +7,8 @@ const buttonStyle =
   "border border-gray-200 rounded dark:focus:text-black mb-4 md:m-0";
 
 const ProductForm = () => {
+  const token = localStorage.getItem("token");
+  
   const [brands, setBrands] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -20,7 +22,11 @@ const ProductForm = () => {
   useEffect(() => {
     async function fetchBrands() {
       try {
-        const response = await axios.get("http://localhost:3000/api/brands");
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands`, {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        });
         setBrands(response.data);
       } catch (error) {
         console.error("Error fetching brands:", error);
@@ -38,10 +44,9 @@ const ProductForm = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    console.log(formData);
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/products",
+        `${process.env.NEXT_PUBLIC_URL_BASE}/products`,
         formData
       );
       console.log("Product created:", response.data);

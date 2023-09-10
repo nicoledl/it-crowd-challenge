@@ -9,6 +9,8 @@ const inputStyle =
   "border dark:border-none border-gray-200 rounded dark:focus:text-black mb-4 md:m-0";
 
 const EditProductForm = ({ product, closeEdit, actionState }) => {
+  const token = localStorage.getItem("token");
+  
   const { id, name, description, image_url, price, brandId } = product;
   const [brands, setBrands] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
@@ -24,7 +26,9 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
   useEffect(() => {
     async function fetchBrands() {
       try {
-        const response = await axios.get("http://localhost:3000/api/brands");
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_URL_BASE}/brands`
+        );
         setBrands(response.data);
       } catch (error) {
         console.error("Error fetching brands:", error);
@@ -44,8 +48,13 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/products/${id}`,
-        formData
+        `${process.env.NEXT_PUBLIC_URL_BASE}/products/${id}`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Product created:", response.data);
       actionState(false);

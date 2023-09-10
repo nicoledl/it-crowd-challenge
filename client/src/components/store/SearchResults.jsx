@@ -10,13 +10,11 @@ const SearchResults = () => {
   const [products, setProducts] = useState(null);
   const [page, setPage] = useState(1);
 
-  console.log(search);
-
   useEffect(() => {
     if (!products) {
       try {
         axios
-          .get(`http://localhost:3000/api/search/page${search}&page=${page}`)
+          .get(`${process.env.NEXT_PUBLIC_URL_BASE}/search/page${search}&page=${page}`)
           .then((response) => setProducts(response.data));
       } catch (error) {
         console.error(error);
@@ -39,7 +37,7 @@ const SearchResults = () => {
       <Products products={products} />
       <Pagination
         setPage={setPage}
-        url={`http://localhost:3000/api/search${search}`}
+        url={`${process.env.NEXT_PUBLIC_URL_BASE}/search${search}`}
       />
     </div>
   );

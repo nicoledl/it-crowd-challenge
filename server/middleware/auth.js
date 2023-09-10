@@ -1,16 +1,21 @@
 const jwt = require("jsonwebtoken");
-const secretKey = require("../config/authConfig").secretKey;
 
 function verifyToken(req, res, next) {
-  const token = req.headers.authorization;
+  const token = req.headers.authorization.split(" ")[1];
 
   if (!token) {
     return res.status(401).json({ error: "Acceso no autorizado" });
   }
 
-  jwt.verify(token, secretKey, (err, decoded) => {
+  jwt.verify(token, process.env.JWT_SECRET_KEY, (err, decoded) => {
     if (err) {
-      return res.status(401).json({ error: "Token no válido" });
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ error: "Expired token" });
+      } else if (err.name === "JsonWebTokenError") {
+        return res.status(404).json({ error: "Invalid token" });
+      } else {
+        return res.status(401).json({ error: "Token verification failed." });
+      }
     }
 
     req.user = decoded;

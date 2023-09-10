@@ -36,7 +36,6 @@ const Login = () => {
         formData
       );
       const token = response.data.token;
-      // Guarda el token en localStorage o en una cookie para usarlo en futuras solicitudes.
       localStorage.setItem("token", token);
 
       window.location.href = "/admin";

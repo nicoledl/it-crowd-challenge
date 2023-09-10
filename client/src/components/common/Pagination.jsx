@@ -49,25 +49,23 @@ const Pagination = ({ setPage, url }) => {
             scrollToTop();
           }}
         />
-        {pages
-          .slice(startPage - 1, endPage)
-          .map((number, i) => (
-            <button
-              key={i}
-              href={"/"}
-              className={`${
-                crrPage === number && "text-white bg-rose-500 rounded-full"
-              } hover:bg-mustard rounded-full w-[40px] h-[40px] duration-300 transition`}
-              onClick={() => {
-                setPage(number);
-                setAction(!action);
-                setCrrPage(number);
-                scrollToTop();
-              }}
-            >
-              {number}
-            </button>
-          ))}
+        {pages.slice(startPage - 1, endPage).map((number, i) => (
+          <button
+            key={i}
+            href={"/"}
+            className={`${
+              crrPage === number && "text-white bg-rose-500 rounded-full"
+            } hover:bg-mustard rounded-full w-[40px] h-[40px] duration-300 transition`}
+            onClick={() => {
+              setPage(number);
+              setAction(!action);
+              setCrrPage(number);
+              scrollToTop();
+            }}
+          >
+            {number}
+          </button>
+        ))}
         <ArrowRightIcon
           width={25}
           className="cursor-pointer hover:text-mustard"

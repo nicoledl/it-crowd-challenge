@@ -1,11 +1,13 @@
 "use client";
-import React, { useState, useEffect } from "react";
+import React, { useState } from "react";
 import axios from "axios";
 
 //styles
 const buttonStyle = "border border-gray-200 rounded dark:focus:text-black";
 
 const BrandForm = () => {
+  const token = localStorage.getItem("token");
+
   const [formData, setFormData] = useState({
     name: "",
     image_url: "",
@@ -21,8 +23,13 @@ const BrandForm = () => {
 
     try {
       const response = await axios.post(
-        "http://localhost:3000/api/brands",
-        formData
+        `${process.env.NEXT_PUBLIC_URL_BASE}/brands`,
+        formData,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Brand created:", response.data);
       window.location.href = "/admin";

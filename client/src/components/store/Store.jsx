@@ -10,7 +10,7 @@ const Store = () => {
 
   useEffect(() => {
     axios
-      .get(`http://localhost:3000/api/products/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_BASE}/products/${page}`)
       .then((res) => {
         setProductsPerPage(res.data);
       })
@@ -21,8 +21,8 @@ const Store = () => {
 
   return (
     <>
-      <Products products={productsPerPage} />{" "}
-      <Pagination setPage={setPage} url="http://localhost:3000/api/products/" />
+      <Products products={productsPerPage} />
+      <Pagination setPage={setPage} url={`${process.env.NEXT_PUBLIC_URL_BASE}/products`} />
     </>
   );
 };

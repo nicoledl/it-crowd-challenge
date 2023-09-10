@@ -7,6 +7,8 @@ import Pagination from "../common/Pagination";
 import MessageAlert from "../common/Message";
 
 const ProductsList = () => {
+  const token = localStorage.getItem("token");
+
   const [products, setProducts] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
@@ -15,7 +17,7 @@ const ProductsList = () => {
   const [brands, setBrands] = useState(null);
   const [sortBrand, setSortBrand] = useState(null);
   const [paginationUrl, setPaginationUrl] = useState(
-    "http://localhost:3000/api/products/"
+    `${process.env.NEXT_PUBLIC_URL_BASE}/products`
   );
 
   // products
@@ -23,7 +25,7 @@ const ProductsList = () => {
     if (sortBrand && sortBrand != "Select a brand") {
       axios
         .get(
-          `http://localhost:3000/api/search/page?keyword=${sortBrand}&page=${page}`
+          `${process.env.NEXT_PUBLIC_URL_BASE}/search/page?keyword=${sortBrand}&page=${page}`
         )
         .then((response) => {
           setProducts(response.data);
@@ -33,12 +35,14 @@ const ProductsList = () => {
           console.error("Error al obtener los datos:", error);
         });
 
-      setPaginationUrl(`http://localhost:3000/api/search?keyword=${sortBrand}`);
+      setPaginationUrl(
+        `${process.env.NEXT_PUBLIC_URL_BASE}/search?keyword=${sortBrand}`
+      );
       return;
     }
 
     axios
-      .get(`http://localhost:3000/api/products/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_BASE}/products/${page}`)
       .then((response) => {
         setProducts(response.data);
         setAction(true);
@@ -47,13 +51,13 @@ const ProductsList = () => {
         console.error("Error al obtener los datos:", error);
       });
 
-    setPaginationUrl(`http://localhost:3000/api/products/`);
+    setPaginationUrl(`${process.env.NEXT_PUBLIC_URL_BASE}/products`);
   }, [action, page, sortBrand]);
 
   // brands
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/brands")
+      .get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands`)
       .then((response) => {
         setBrands(response.data);
         setAction(true);
@@ -65,7 +69,11 @@ const ProductsList = () => {
 
   const deleteProduct = (id) => {
     axios
-      .delete(`http://localhost:3000/api/products/${id}`)
+      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/products/${id}`, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         setProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== id)
@@ -110,7 +118,7 @@ const ProductsList = () => {
         </select>
       </div>
       <div className="container mx-auto">
-        <div className="grid  divide-y">
+        <div className="grid  divide-y dark:divide-black">
           <div className="grid grid-cols-4 sm:grid-cols-6 text-center py-3">
             <div className="sm:block hidden">#</div>
             <div className="col-span-2">Name</div>

@@ -1,7 +1,6 @@
-const User = require("../database/models/User"); 
+const User = require("../database/models/User");
 const bcrypt = require("bcrypt");
 const jwt = require("jsonwebtoken");
-const secretKey = require("../config/authConfig").secretKey;
 
 async function loginUser(req, res) {
   const { username, password } = req.body;
@@ -16,8 +15,7 @@ async function loginUser(req, res) {
     const saltRounds = 10;
     const hashedPassword = await bcrypt.hash(password, saltRounds);
 
-
-    const plainPassword = password; 
+    const plainPassword = password;
     const passwordMatch = await bcrypt.compare(plainPassword, hashedPassword);
 
     if (!passwordMatch) {
@@ -26,8 +24,8 @@ async function loginUser(req, res) {
 
     const token = jwt.sign(
       { id: user.id, username: user.username, role: user.role },
-      secretKey,
-      { expiresIn: "1h" }
+      process.env.JWT_SECRET_KEY,
+      { expiresIn: "15s" }
     );
 
     res.json({ token });
@@ -61,7 +59,7 @@ async function registerUser(req, res) {
 
     const token = jwt.sign(
       { id: newUser.id, username: newUser.username, role: newUser.role },
-      secretKey,
+      process.env.JWT_SECRET_KEY,
       { expiresIn: "1h" }
     );
 
@@ -72,7 +70,33 @@ async function registerUser(req, res) {
   }
 }
 
+async function verifyToken(req, res) {
+  const tokenFromBody = req.body.token; // Obtén el token del cuerpo de la solicitud
+
+  if (!tokenFromBody) {
+    return res.status(401).json({ error: "Acceso no autorizado" });
+  }
+
+  jwt.verify(tokenFromBody, process.env.JWT_SECRET_KEY, (err, decoded) => {
+    if (err) {
+      if (err.name === "TokenExpiredError") {
+        return res.status(401).json({ error: "Token expirado" });
+      } else if (err.name === "JsonWebTokenError") {
+        return res.status(401).json({ error: "Token no válido" });
+      } else {
+        return res
+          .status(401)
+          .json({ error: "Error en la verificación del token" });
+      }
+    }
+
+    // El token es válido
+    return res.status(200).json({ message: "Token válido" });
+  });
+}
+
 module.exports = {
   loginUser,
   registerUser,
+  verifyToken,
 };

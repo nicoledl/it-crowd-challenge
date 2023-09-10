@@ -8,6 +8,8 @@ import MessageAlert from "../common/Message";
 const buttonStyle = "border border-gray-200 rounded dark:focus:text-black";
 
 const EditBrandForm = ({ brand, closeEdit, actionState }) => {
+  const token = localStorage.getItem("token");
+  
   const { id, name, image_url } = brand;
   const [formData, setFormData] = useState({
     name: name,
@@ -25,8 +27,13 @@ const EditBrandForm = ({ brand, closeEdit, actionState }) => {
 
     try {
       const response = await axios.put(
-        `http://localhost:3000/api/brands/${id}`,
-        formData
+        `${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`,
+        formData,
+        {
+          headers: {
+            'Authorization': `Bearer ${token}`
+          }
+        }
       );
       console.log("Brand created:", response.data);
       actionState(false);
