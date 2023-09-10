@@ -29,11 +29,6 @@ const EditBrandForm = ({ brand, closeEdit, actionState }) => {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`,
         formData,
-        {
-          headers: {
-            'Authorization': `Bearer ${token}`
-          }
-        }
       );
       console.log("Brand created:", response.data);
       actionState(false);

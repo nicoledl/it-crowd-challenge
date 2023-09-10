@@ -7,8 +7,6 @@ import Navbar from "./Navbar";
 import Pagination from "../common/Pagination";
 
 const ProductsList = () => {
-  const token = localStorage.getItem("token");
-
   const [brands, setBrands] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
@@ -29,11 +27,7 @@ const ProductsList = () => {
 
   const deleteBrand = (id) => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`)
       .then((response) => {
         setBrands(response.data);
       })

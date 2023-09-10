@@ -22,11 +22,7 @@ const ProductForm = () => {
   useEffect(() => {
     async function fetchBrands() {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands`, {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        });
+        const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands`);
         setBrands(response.data);
       } catch (error) {
         console.error("Error fetching brands:", error);

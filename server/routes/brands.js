@@ -1,6 +1,5 @@
 const express = require("express");
 const brandController = require("../controllers/brandController");
-const verifyToken = require("../middleware/auth");
 const router = express.Router();
 
 // get all brands
@@ -8,9 +7,6 @@ router.get("/", brandController.getAllBrands);
 
 // get brands per page
 router.get("/:page", brandController.getBrandsPerPage);
-
-// Applies the verifyToken middleware to the creation, modification, and deletion route
-router.use(verifyToken);
 
 // create new brand
 router.post("/", brandController.createBrand);

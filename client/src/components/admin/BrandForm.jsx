@@ -24,12 +24,7 @@ const BrandForm = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL_BASE}/brands`,
-        formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
+        formData
       );
       console.log("Brand created:", response.data);
       window.location.href = "/admin";

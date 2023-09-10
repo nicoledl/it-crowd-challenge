@@ -70,33 +70,7 @@ async function registerUser(req, res) {
   }
 }
 
-async function verifyToken(req, res) {
-  const tokenFromBody = req.body.token; // Obtén el token del cuerpo de la solicitud
-
-  if (!tokenFromBody) {
-    return res.status(401).json({ error: "Acceso no autorizado" });
-  }
-
-  jwt.verify(tokenFromBody, process.env.JWT_SECRET_KEY, (err, decoded) => {
-    if (err) {
-      if (err.name === "TokenExpiredError") {
-        return res.status(401).json({ error: "Token expirado" });
-      } else if (err.name === "JsonWebTokenError") {
-        return res.status(401).json({ error: "Token no válido" });
-      } else {
-        return res
-          .status(401)
-          .json({ error: "Error en la verificación del token" });
-      }
-    }
-
-    // El token es válido
-    return res.status(200).json({ message: "Token válido" });
-  });
-}
-
 module.exports = {
   loginUser,
-  registerUser,
-  verifyToken,
+  registerUser
 };

@@ -50,11 +50,6 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_URL_BASE}/products/${id}`,
         formData,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
       );
       console.log("Product created:", response.data);
       actionState(false);
