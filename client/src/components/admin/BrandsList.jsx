@@ -2,20 +2,22 @@
 import { useEffect, useState } from "react";
 import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
-import Navbar from "./Navbar";
 import EditBrandForm from "./EditBrandForm";
+import Navbar from "./Navbar";
+import Pagination from "../store/Pagination";
 
 const ProductsList = () => {
   const [brands, setBrands] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/brands/")
+      .get(`http://localhost:3000/api/brands/${page}`)
       .then((response) => {
         setBrands(response.data);
-        setAction(true)
+        setAction(true);
       })
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
@@ -50,7 +52,9 @@ const ProductsList = () => {
               <div
                 key={brand.id}
                 className={`${
-                  editWindowId ? "" : "dark:hover:bg-gray-100/30 hover:bg-gray-50"
+                  editWindowId
+                    ? ""
+                    : "dark:hover:bg-gray-100/30 hover:bg-gray-50"
                 } grid grid-cols-3 text-center items-center h-fit py-1`}
               >
                 <div>{brand.id}</div>
@@ -60,7 +64,7 @@ const ProductsList = () => {
                     alt={brand.name}
                     className="w-[50px] h-[50px] rounded-full object-cover"
                   />
-                  {brand?.name}
+                  {brand.name ? brand.name : ""}
                 </div>
                 <div className="flex justify-center items-center">
                   <Cog6ToothIcon
@@ -93,6 +97,7 @@ const ProductsList = () => {
           })}
         </div>
       </div>
+      <Pagination setPage={setPage} url="http://localhost:3000/api/brands/" />
     </>
   );
 };

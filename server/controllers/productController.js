@@ -1,6 +1,5 @@
 const Product = require("../database/models/Product");
 const Brand = require("../database/models/Brand");
-const { Sequelize, Op } = require("sequelize");
 
 // get all products
 async function getAllProducts(req, res) {
@@ -15,6 +14,25 @@ async function getAllProducts(req, res) {
   } catch (error) {
     console.error("Error al buscar productos:", error);
     res.status(500).json({ error: "Error al buscar productos" });
+  }
+}
+
+// get all products per page
+async function getProductsPerPage(req, res) {
+  const PRODUCTS_PER_PAGE = 15;
+  try {
+    const page = parseInt(req.params.page, 10);
+    const offset = (page - 1) * PRODUCTS_PER_PAGE;
+
+    const products = await Product.findAll({
+      limit: PRODUCTS_PER_PAGE,
+      offset: offset,
+    });
+
+    res.json(products);
+  } catch (error) {
+    console.error("Error al obtener productos por página:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
   }
 }
 
@@ -109,6 +127,7 @@ async function getAllByBrand(req, res) {
 
 module.exports = {
   getAllProducts,
+  getProductsPerPage,
   createProduct,
   getProductById,
   updateProduct,

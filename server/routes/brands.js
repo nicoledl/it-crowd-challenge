@@ -5,6 +5,9 @@ const router = express.Router();
 // get all brands
 router.get("/", brandController.getAllBrands);
 
+// get brands per page
+router.get("/:page", brandController.getBrandsPerPage);
+
 // create new brand
 router.post("/", brandController.createBrand);
 

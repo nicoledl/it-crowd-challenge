@@ -20,6 +20,12 @@ async function searchProducts(req, res) {
               [Op.like]: `%${keyword}%`, // Búsqueda insensible a mayúsculas y minúsculas en MySQL
             },
           },
+          {
+            "$Brand.name$": {
+              // Busca coincidencias en la propiedad 'name' de la tabla 'Brand'
+              [Op.like]: `%${keyword}%`,
+            },
+          },
         ],
       },
       include: {
@@ -35,6 +41,48 @@ async function searchProducts(req, res) {
   }
 }
 
+async function searchProductsPerPage(req, res) {
+  const PRODUCTS_PER_PAGE = 15;
+  try {
+    const { page = 1, keyword } = req.query;
+    const offset = (page - 1) * PRODUCTS_PER_PAGE;
+
+    const products = await Product.findAll({
+      where: {
+        [Op.or]: [
+          {
+            name: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+          {
+            description: {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+          {
+            "$Brand.name$": {
+              [Op.like]: `%${keyword}%`,
+            },
+          },
+        ],
+      },
+      include: {
+        model: Brand,
+        attributes: ["name", "image_url"],
+      },
+      limit: PRODUCTS_PER_PAGE,
+      offset: offset,
+    });
+
+    res.json(products);
+  } catch (error) {
+    console.error("Error al buscar productos:", error);
+    res.status(500).json({ error: "Error al buscar productos" });
+  }
+}
+
 module.exports = {
   searchProducts,
+  searchProductsPerPage,
 };

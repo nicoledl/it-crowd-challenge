@@ -2,22 +2,29 @@
 import { useEffect, useState } from "react";
 import Products from "./Products";
 import axios from "axios";
+import Pagination from "./Pagination";
 
 const Store = () => {
-  const [products, setProducts] = useState([]);
+  const [productsPerPage, setProductsPerPage] = useState([]);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/products/")
-      .then((response) => {
-        setProducts(response.data);
+      .get(`http://localhost:3000/api/products/${page}`)
+      .then((res) => {
+        setProductsPerPage(res.data);
       })
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
       });
-  }, []);
+  }, [page]);
 
-  return <Products products={products} />;
+  return (
+    <>
+      <Products products={productsPerPage} />{" "}
+      <Pagination setPage={setPage} url="http://localhost:3000/api/products/" />
+    </>
+  );
 };
 
 export default Store;

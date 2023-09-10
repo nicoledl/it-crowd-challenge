@@ -4,15 +4,17 @@ import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import EditProductForm from "./EditProductForm";
 import Navbar from "./Navbar";
+import Pagination from "../store/Pagination";
 
 const ProductsList = () => {
   const [products, setProducts] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
+  const [page, setPage] = useState(1);
 
   useEffect(() => {
     axios
-      .get("http://localhost:3000/api/products/")
+      .get(`http://localhost:3000/api/products/${page}`)
       .then((response) => {
         setProducts(response.data);
         setAction(true);
@@ -26,7 +28,9 @@ const ProductsList = () => {
     axios
       .delete(`http://localhost:3000/api/products/${id}`)
       .then((response) => {
-        setProducts(response.data);
+        setProducts((prevProducts) =>
+          prevProducts.filter((product) => product.id !== id)
+        );
       })
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
@@ -99,6 +103,7 @@ const ProductsList = () => {
           })}
         </div>
       </div>
+      <Pagination setPage={setPage} url="http://localhost:3000/api/products/" />
     </>
   );
 };

@@ -11,10 +11,10 @@ const Item = ({ product }) => {
         src="https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
         alt="img-default"
       />
-      <div className="grid gap-1 align-center px-3 text-xl font-bold">
-        <p className="capitalize">{name}</p>
+      <div className="grid gap-1 align-center px-3 font-bold">
+        <p className="capitalize text-sm">{name}</p>
         <div className="absolute flex bottom-0 right-0 me-2 mb-1">
-          <p>${price}</p>
+          <p className="text-md">${price}</p>
           <TagIcon className="h-6 w-6 text-lime-500" />
         </div>
       </div>

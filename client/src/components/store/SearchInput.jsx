@@ -2,7 +2,7 @@
 import { useState } from "react";
 import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 
-const Search = () => {
+const SearchInput = () => {
   const [inputValue, setInputValue] = useState("");
 
   const handleChange = (e) => {
@@ -35,4 +35,4 @@ const Search = () => {
   );
 };
 
-export default Search;
+export default SearchInput;

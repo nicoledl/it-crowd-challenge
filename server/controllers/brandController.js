@@ -11,6 +11,25 @@ async function getAllBrands(req, res) {
   }
 }
 
+// get all products per page
+async function getBrandsPerPage(req, res) {
+  const BRANDS_PER_PAGE = 15;
+  try {
+    const page = parseInt(req.params.page, 10);
+    const offset = (page - 1) * BRANDS_PER_PAGE;
+
+    const products = await Brand.findAll({
+      limit: BRANDS_PER_PAGE,
+      offset: offset,
+    });
+
+    res.json(products);
+  } catch (error) {
+    console.error("Error al obtener marca por página:", error);
+    res.status(500).json({ error: "Error interno del servidor" });
+  }
+}
+
 // create new brand
 async function createBrand(req, res) {
   try {
@@ -66,6 +85,7 @@ async function deleteBrand(req, res) {
 
 module.exports = {
   getAllBrands,
+  getBrandsPerPage,
   createBrand,
   updateBrand,
   deleteBrand,
