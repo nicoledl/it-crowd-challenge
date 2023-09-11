@@ -15,13 +15,16 @@ const Products = ({ products }) => {
     setSelectedItem(null);
   };
 
-  $(document).on("mouseenter", ".image-modal", function () {
-    $(".details-modal").css("display", "none");
+  document.addEventListener("DOMContentLoaded", function () {
+    $(document).on("mouseenter", ".image-modal", function () {
+      $(".details-modal").css("display", "none");
+    });
+  
+    $(document).on("mouseleave", ".image-modal", function () {
+      $(".details-modal").css("display", "block");
+    });
   });
 
-  $(document).on("mouseleave", ".image-modal", function () {
-    $(".details-modal").css("display", "block");
-  });
 
   return (
     <section className="container mx-auto px-8 sm:px-4 xl:px-44">

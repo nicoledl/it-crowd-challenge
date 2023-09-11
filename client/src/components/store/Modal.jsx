@@ -4,12 +4,14 @@ import $ from "jquery";
 const Modal = ({ closeMondal, product }) => {
   const { image_url, name, description, price, brand } = product;
 
-  $(document).on("mouseenter", ".image-modal", function () {
-    $(".details-modal").css("display", "none");
-  });
+  document.addEventListener("DOMContentLoaded", function () {
+    $(document).on("mouseenter", ".image-modal", function () {
+      $(".details-modal").css("display", "none");
+    });
 
-  $(document).on("mouseleave", ".image-modal", function () {
-    $(".details-modal").css("display", "block");
+    $(document).on("mouseleave", ".image-modal", function () {
+      $(".details-modal").css("display", "block");
+    });
   });
 
   return (
