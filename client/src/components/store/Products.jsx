@@ -1,11 +1,21 @@
 "use client";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Item from "./Item";
 import Modal from "./Modal";
 import $ from "jquery";
 
 const Products = ({ products }) => {
   const [selectedItem, setSelectedItem] = useState(null);
+
+  useEffect(() => {
+    $(document).on("mouseenter", ".image-modal", function () {
+      $(".details-modal").css("display", "none");
+    });
+
+    $(document).on("mouseleave", ".image-modal", function () {
+      $(".details-modal").css("display", "block");
+    });
+  }, []);
 
   const openModal = (index) => {
     setSelectedItem(index);
@@ -14,17 +24,6 @@ const Products = ({ products }) => {
   const closeModal = () => {
     setSelectedItem(null);
   };
-
-  document.addEventListener("DOMContentLoaded", function () {
-    $(document).on("mouseenter", ".image-modal", function () {
-      $(".details-modal").css("display", "none");
-    });
-  
-    $(document).on("mouseleave", ".image-modal", function () {
-      $(".details-modal").css("display", "block");
-    });
-  });
-
 
   return (
     <section className="container mx-auto px-8 sm:px-4 xl:px-44">

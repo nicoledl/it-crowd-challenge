@@ -1,10 +1,11 @@
 import { TagIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import $ from "jquery";
+import { useEffect } from "react";
 
 const Modal = ({ closeMondal, product }) => {
   const { image_url, name, description, price, brand } = product;
 
-  document.addEventListener("DOMContentLoaded", function () {
+  useEffect(() => {
     $(document).on("mouseenter", ".image-modal", function () {
       $(".details-modal").css("display", "none");
     });
@@ -12,7 +13,7 @@ const Modal = ({ closeMondal, product }) => {
     $(document).on("mouseleave", ".image-modal", function () {
       $(".details-modal").css("display", "block");
     });
-  });
+  }, []);
 
   return (
     <div className="modal w-screen h-screen top-0 left-0 fixed z-20 bg-black/10 backdrop-blur">
