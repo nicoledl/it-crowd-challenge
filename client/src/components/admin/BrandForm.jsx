@@ -23,7 +23,7 @@ const BrandForm = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL_BASE}/brands`,
+        `${process.env.NEXT_SERVER_URL_BASE}/brands`,
         formData,
         {
           headers: {

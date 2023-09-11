@@ -18,7 +18,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${page}`)
+      .get(`${process.env.NEXT_SERVER_URL_BASE}/brands/${page}`)
       .then((response) => {
         setBrands(response.data);
         setAction(true);
@@ -30,7 +30,7 @@ const ProductsList = () => {
 
   const deleteBrand = (id) => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`, {
+      .delete(`${process.env.NEXT_SERVER_URL_BASE}/brands/${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -130,7 +130,7 @@ const ProductsList = () => {
       </div>
       <Pagination
         setPage={setPage}
-        url={`${process.env.NEXT_PUBLIC_URL_BASE}/brands/`}
+        url={`${process.env.NEXT_SERVER_URL_BASE}/brands/`}
       />
     </>
   );

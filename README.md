@@ -33,7 +33,6 @@ Para ejecutar la aplicación localmente, sigue estos pasos:
 *Backend:
 Ingrese en el .env los siguientes parametros con sus datos DB_USERNAME, DB_PASSWORD, DB_DATABASE, DB_HOST, DB_DIALECT y JWT_SECRET_KEY.
 Primero ingresa en el directorio del backend, ejecuta npm install para instalar las dependencias.
-Crea un archivo .env.local y configura las variables de entorno necesarias (NEXT_PUBLIC_URL_BASE = http://localhost:3000/api).
 Ejecuta npm run dev para iniciar el servidor backend.
 
 *Frontend:
