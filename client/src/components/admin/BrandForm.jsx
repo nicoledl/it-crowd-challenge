@@ -17,7 +17,6 @@ const BrandForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-console.log(process.env.NEXT_PUBLIC_SERVER);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
