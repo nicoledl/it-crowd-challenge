@@ -17,13 +17,13 @@ const BrandForm = () => {
     const { name, value } = e.target;
     setFormData({ ...formData, [name]: value });
   };
-
+console.log(process.env.NEXT_APP_SERVER_URL_BASE);
   const handleSubmit = async (e) => {
     e.preventDefault();
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_SERVER_URL_BASE}/brands`,
+        `${process.env.NEXT_APP_SERVER_URL_BASE}/brands`,
         formData,
         {
           headers: {
