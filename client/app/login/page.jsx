@@ -12,7 +12,7 @@ const page = () => {
     const token = localStorage.getItem("token");
 
     axios
-      .post(`http://localhost:3000/auth/verify-token`, null, {
+      .post(`https://it-crowd-challenge.up.railway.app/auth/verify-token`, null, {
         headers: {
           authorization: `Bearer ${token}`,
         },

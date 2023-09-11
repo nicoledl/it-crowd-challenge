@@ -9,9 +9,9 @@ require("./database/asociations");
 const PORT = process.env.PORT || 3000;
 
 // middleware
+app.use(cors({ origin: true }));
 app.use(express.json());
 app.use(express.urlencoded({ extended: false }));
-app.use(cors());
 
 // routes
 app.use("/auth", authRoutes);

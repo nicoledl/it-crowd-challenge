@@ -1,10 +1,11 @@
 "use client";
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
 
 export default function PrivateRoute({ children }) {
   const router = useRouter();
+  const [pass, setPass] = useState(false);
 
   useEffect(() => {
     const token = localStorage.getItem("token");
@@ -15,12 +16,17 @@ export default function PrivateRoute({ children }) {
     }
 
     axios
-      .post("http://localhost:3000/auth/verify-token", null, {
-        headers: {
-          Authorization: `Bearer ${token}`,
-        },
-      })
+      .post(
+        "https://it-crowd-challenge.up.railway.app/auth/verify-token",
+        null,
+        {
+          headers: {
+            Authorization: `Bearer ${token}`,
+          },
+        }
+      )
       .then(() => {
+        setPass(true);
         console.log("Token válido");
       })
       .catch((error) => {
@@ -28,6 +34,14 @@ export default function PrivateRoute({ children }) {
         router.push("/login");
       });
   }, [children]);
+
+  if (!pass) {
+    return (
+      <div className="w-full flex justify-center content-center text-mustard text-bold">
+        cargando...
+      </div>
+    );
+  }
 
   return <div>{children}</div>;
 }

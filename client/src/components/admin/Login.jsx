@@ -32,8 +32,8 @@ const Login = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "http://localhost:3000/auth/login",
-        formData
+        "https://it-crowd-challenge.up.railway.app/auth/login",
+        formData,
       );
       const token = response.data.token;
       localStorage.setItem("token", token);
