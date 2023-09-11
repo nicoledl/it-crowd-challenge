@@ -14,7 +14,7 @@ const SearchResults = () => {
     if (!products) {
       try {
         axios
-          .get(`${process.env.NEXT_APP_SERVER_URL_BASE}/search/page${search}&page=${page}`)
+          .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/search/page${search}&page=${page}`)
           .then((response) => setProducts(response.data));
       } catch (error) {
         console.error(error);
@@ -37,7 +37,7 @@ const SearchResults = () => {
       <Products products={products} />
       <Pagination
         setPage={setPage}
-        url={`${process.env.NEXT_APP_SERVER_URL_BASE}/search${search}`}
+        url={`${process.env.NEXT_PUBLIC_URL_SERVER}/search${search}`}
       />
     </div>
   );

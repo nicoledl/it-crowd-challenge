@@ -10,7 +10,7 @@ const Store = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_APP_SERVER_URL_BASE}/products/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/products/${page}`)
       .then((res) => {
         setProductsPerPage(res.data);
       })
@@ -22,7 +22,7 @@ const Store = () => {
   return (
     <>
       <Products products={productsPerPage} />
-      <Pagination setPage={setPage} url={`${process.env.NEXT_APP_SERVER_URL_BASE}/products`} />
+      <Pagination setPage={setPage} url={`${process.env.NEXT_PUBLIC_URL_SERVER}/products`} />
     </>
   );
 };

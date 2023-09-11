@@ -9,13 +9,13 @@ const Brands = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_APP_SERVER_URL_BASE}/brands/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/${page}`)
       .then((response) => setBrands(response.data))
       .catch((error) => console.error("Error al obtener los datos:", error));
   }, []);
 
   const onClick = (name) => {
-    window.location.href = `${process.env.NEXT_APP_CLIENT_URL_BASE}/store/search/page?keyword=${name}`;
+    window.location.href = `${process.env.NEXT_PUBLIC_URL_CLIENT}/store/search/page?keyword=${name}`;
   };
 
   return (
@@ -38,7 +38,7 @@ const Brands = () => {
           ))}
         </div>
       </section>
-      <Pagination setPage={setPage} url={`${process.env.NEXT_APP_SERVER_URL_BASE}/brands/`} />
+      <Pagination setPage={setPage} url={`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/`} />
     </>
   );
 };

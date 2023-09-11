@@ -17,7 +17,7 @@ const ProductsList = () => {
   const [brands, setBrands] = useState(null);
   const [sortBrand, setSortBrand] = useState(null);
   const [paginationUrl, setPaginationUrl] = useState(
-    `${process.env.NEXT_APP_SERVER_URL_BASE}/products`
+    `${process.env.NEXT_PUBLIC_URL_SERVER}/products`
   );
 
   // products
@@ -25,7 +25,7 @@ const ProductsList = () => {
     if (sortBrand && sortBrand != "Select a brand") {
       axios
         .get(
-          `${process.env.NEXT_APP_SERVER_URL_BASE}/search/page?keyword=${sortBrand}&page=${page}`
+          `${process.env.NEXT_PUBLIC_URL_SERVER}/search/page?keyword=${sortBrand}&page=${page}`
         )
         .then((response) => {
           setProducts(response.data);
@@ -36,13 +36,13 @@ const ProductsList = () => {
         });
 
       setPaginationUrl(
-        `${process.env.NEXT_APP_SERVER_URL_BASE}/search?keyword=${sortBrand}`
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/search?keyword=${sortBrand}`
       );
       return;
     }
 
     axios
-      .get(`${process.env.NEXT_APP_SERVER_URL_BASE}/products/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/products/${page}`)
       .then((response) => {
         setProducts(response.data);
         setAction(true);
@@ -51,13 +51,13 @@ const ProductsList = () => {
         console.error("Error al obtener los datos:", error);
       });
 
-    setPaginationUrl(`${process.env.NEXT_APP_SERVER_URL_BASE}/products`);
+    setPaginationUrl(`${process.env.NEXT_PUBLIC_URL_SERVER}/products`);
   }, [action, page, sortBrand]);
 
   // brands
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_APP_SERVER_URL_BASE}/brands`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/brands`)
       .then((response) => {
         setBrands(response.data);
         setAction(true);
@@ -69,7 +69,7 @@ const ProductsList = () => {
 
   const deleteProduct = (id) => {
     axios
-      .delete(`${process.env.NEXT_APP_SERVER_URL_BASE}/products/${id}`, {
+      .delete(`${process.env.NEXT_PUBLIC_URL_SERVER}/products/${id}`, {
         headers: {
           Authorization: `Bearer ${token}`,
         },

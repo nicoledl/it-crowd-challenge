@@ -12,7 +12,7 @@ const SearchInput = () => {
 
   const handleKeyPress = (e) => {
     if (e.key === "Enter") {
-      window.location.href = `${process.env.NEXT_APP_CLIENT_URL_BASE}/store/search/page?keyword=${inputValue}`;
+      window.location.href = `${process.env.NEXT_PUBLIC_URL_CLIENT}/store/search/page?keyword=${inputValue}`;
     }
   };
 
