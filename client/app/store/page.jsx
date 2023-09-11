@@ -1,5 +1,7 @@
 import Store from "@/components/store/Store";
 
-export default function Home() {
+const page = () => {
   return <Store />;
-}
+};
+
+export default page;
