@@ -16,7 +16,7 @@ const ThemeSwitcher = () => {
 
   return (
     <div className='align-center flex'>
-      {theme === 'dark' ? (
+      {theme !== 'dark' ? (
         <button onClick={() => setTheme('light')}>
           <svg
             xmlns='http://www.w3.org/2000/svg'
