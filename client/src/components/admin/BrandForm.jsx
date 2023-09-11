@@ -7,7 +7,7 @@ const buttonStyle = "border border-gray-200 rounded dark:focus:text-black";
 
 const BrandForm = () => {
   const token = localStorage.getItem("token");
-
+  
   const [formData, setFormData] = useState({
     name: "",
     image_url: "",
@@ -24,7 +24,12 @@ const BrandForm = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL_BASE}/brands`,
-        formData
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Brand created:", response.data);
       window.location.href = "/admin";

@@ -10,7 +10,7 @@ const inputStyle =
 
 const EditProductForm = ({ product, closeEdit, actionState }) => {
   const token = localStorage.getItem("token");
-  
+
   const { id, name, description, image_url, price, brandId } = product;
   const [brands, setBrands] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
@@ -50,6 +50,11 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_URL_BASE}/products/${id}`,
         formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Product created:", response.data);
       actionState(false);

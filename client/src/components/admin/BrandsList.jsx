@@ -5,8 +5,11 @@ import axios from "axios";
 import EditBrandForm from "./EditBrandForm";
 import Navbar from "./Navbar";
 import Pagination from "../common/Pagination";
+import MessageAlert from "../common/Message";
 
 const ProductsList = () => {
+  const token = localStorage.getItem("token");
+  
   const [brands, setBrands] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
@@ -27,9 +30,15 @@ const ProductsList = () => {
 
   const deleteBrand = (id) => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`)
+      .delete(`${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
       .then((response) => {
-        setBrands(response.data);
+        setBrands((prevBrands) =>
+          prevBrands.filter((brand) => brand.id !== id)
+        );
       })
       .catch((error) => {
         console.error("Error al obtener los datos:", error);

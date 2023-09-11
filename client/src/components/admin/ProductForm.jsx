@@ -8,7 +8,7 @@ const buttonStyle =
 
 const ProductForm = () => {
   const token = localStorage.getItem("token");
-  
+
   const [brands, setBrands] = useState([]);
 
   const [formData, setFormData] = useState({
@@ -22,7 +22,9 @@ const ProductForm = () => {
   useEffect(() => {
     async function fetchBrands() {
       try {
-        const response = await axios.get(`${process.env.NEXT_PUBLIC_URL_BASE}/brands`);
+        const response = await axios.get(
+          `${process.env.NEXT_PUBLIC_URL_BASE}/brands`
+        );
         setBrands(response.data);
       } catch (error) {
         console.error("Error fetching brands:", error);
@@ -43,7 +45,12 @@ const ProductForm = () => {
     try {
       const response = await axios.post(
         `${process.env.NEXT_PUBLIC_URL_BASE}/products`,
-        formData
+        formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Product created:", response.data);
       window.location.href = "/admin";

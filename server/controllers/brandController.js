@@ -38,6 +38,7 @@ async function createBrand(req, res) {
       name,
       image_url,
     });
+    
     console.log("Brand created:", brand.toJSON());
     res.status(201).json(brand);
   } catch (error) {

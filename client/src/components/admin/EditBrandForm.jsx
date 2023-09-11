@@ -9,7 +9,7 @@ const buttonStyle = "border border-gray-200 rounded dark:focus:text-black";
 
 const EditBrandForm = ({ brand, closeEdit, actionState }) => {
   const token = localStorage.getItem("token");
-  
+
   const { id, name, image_url } = brand;
   const [formData, setFormData] = useState({
     name: name,
@@ -29,6 +29,11 @@ const EditBrandForm = ({ brand, closeEdit, actionState }) => {
       const response = await axios.put(
         `${process.env.NEXT_PUBLIC_URL_BASE}/brands/${id}`,
         formData,
+        {
+          headers: {
+            authorization: `Bearer ${token}`,
+          },
+        }
       );
       console.log("Brand created:", response.data);
       actionState(false);
