@@ -75,6 +75,7 @@ const ProductsList = () => {
         },
       })
       .then(() => {
+        handleButtonClick();
         setProducts((prevProducts) =>
           prevProducts.filter((product) => product.id !== id)
         );
@@ -170,7 +171,6 @@ const ProductsList = () => {
                     width={25}
                     onClick={() => {
                       deleteProduct(product.id);
-                      handleButtonClick();
                     }}
                     className="cursor-pointer text-gray-700 hover:text-red-500"
                   />

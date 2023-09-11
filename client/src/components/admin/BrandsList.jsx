@@ -36,6 +36,7 @@ const ProductsList = () => {
         },
       })
       .then((response) => {
+        handleButtonClick();
         setBrands((prevBrands) =>
           prevBrands.filter((brand) => brand.id !== id)
         );
@@ -111,7 +112,6 @@ const ProductsList = () => {
                     width={25}
                     onClick={() => {
                       deleteBrand(brand.id);
-                      handleButtonClick();
                     }}
                     className="cursor-pointer text-gray-700 hover:text-red-500"
                   />

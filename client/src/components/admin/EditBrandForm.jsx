@@ -36,12 +36,12 @@ const EditBrandForm = ({ brand, closeEdit, actionState }) => {
         }
       );
       console.log("Brand created:", response.data);
+      handleButtonClick();
       actionState(false);
     } catch (error) {
       console.error("Error creating brand:", error);
     }
 
-    handleButtonClick();
   };
 
   const handleButtonClick = () => {

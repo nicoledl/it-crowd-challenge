@@ -10,10 +10,20 @@ const page = () => {
 
   useEffect(() => {
     const token = localStorage.getItem("token");
-    if (token) {
-      router.push("/admin");
-      return;
-    }
+
+    axios
+      .post(`http://localhost:3000/auth/verify-token`, null, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
+      .then(() => {
+        router.push("/admin");
+      })
+      .catch((error) => {
+        localStorage.removeItem("token");
+        console.error(error);
+      });
   }, []);
 
   return (
