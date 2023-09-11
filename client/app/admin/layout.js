@@ -1,4 +1,4 @@
-import PrivateRoute from "../utils/PrivateRoute";
+import PrivateRoute from "../utils/privateRoute";
 import Header from "@/components/admin/Header";
 
 export default function RootLayout({ children }) {
