@@ -61,6 +61,7 @@ const ProductsList = () => {
       .then((response) => {
         setBrands(response.data);
         setAction(true);
+        setPage(1)
       })
       .catch((error) => {
         console.error("Error al obtener los datos:", error);
