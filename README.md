@@ -39,3 +39,6 @@ Se ha creado un usuario de administrador predefinido para facilitar el acceso a 
 ## Notas: 
 1. Se generó un usuario predeterminado. No realicé registro por ser una aplicación pequeña, decidí hacerlo manualmente la aplicación que maneja pedidos de APIs 'Thunder Client'.
 2. * Desde un principio realicé el deploy en la pagina railway, y tuve un inconveniente que no supe resolver, era con un pedido que utilizaba queries. Pidiendo opiniones me recomendaron usar render pero con postgres, por eso luego instale el paquete node-postgres.
+
+# Dominio de la aplicación 
+https://it-crowd-challenge-git-main-nicoledl.vercel.app
