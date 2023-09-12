@@ -65,13 +65,13 @@ const Brands = () => {
               There's not brands yet... :(
             </p>
           )}
+        </div>
           {brands.length !== 0 && (
             <Pagination
               setPage={setPage}
               url={`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/`}
             />
           )}
-        </div>
       </section>
     </>
   );
