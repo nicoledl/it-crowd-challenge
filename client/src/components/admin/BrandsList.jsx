@@ -67,7 +67,7 @@ const ProductsList = () => {
       )}
       <div className="container mx-auto">
         <div className="grid divide-y dark:divide-black">
-          <div className="grid grid-cols-3 text-center py-3  text-bold">
+          <div className="grid grid-cols-3 text-center py-3 text-bold">
             <div>#</div>
             <div>Name</div>
             <div>Actions</div>
