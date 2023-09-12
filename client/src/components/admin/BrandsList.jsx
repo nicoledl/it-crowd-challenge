@@ -91,7 +91,7 @@ const ProductsList = () => {
                         : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
                     }
                     alt={brand.name}
-                    className="w-[50px] h-[50px] rounded object-cover"
+                    className="w-[50px] h-[50px] rounded object-contain"
                   />
                   {brand.name ? brand.name : ""}
                 </div>
