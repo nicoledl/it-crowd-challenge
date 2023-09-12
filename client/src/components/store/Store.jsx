@@ -20,7 +20,6 @@ const Store = () => {
       });
   }, [page]);
 
-
   if (!productsPerPage) {
     return (
       <div
@@ -37,7 +36,7 @@ const Store = () => {
       {productsPerPage.length !== 0 ? (
         <Pagination
           setPage={setPage}
-          url={`${process.env.NEXT_PUBLIC_URL_SERVER}/products`}
+          url={`${process.env.NEXT_PUBLIC_URL_SERVER}/api/products/`}
         />
       ) : (
         <p className="animate-bounce animate-infinite text-center mt-44 text-3xl">
