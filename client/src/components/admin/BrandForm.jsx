@@ -38,7 +38,7 @@ const BrandForm = () => {
   };
 
   return (
-    <div className="text-gray-800 dark:text-white px-5">
+    <div className="text-gray-800 dark:text-white px-5 mb-20">
       <h2 className="font-bold text-2xl my-5 text-mustard">Add a Brand</h2>
       <form
         onSubmit={handleSubmit}

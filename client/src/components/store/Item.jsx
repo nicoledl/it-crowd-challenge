@@ -14,7 +14,7 @@ const Item = ({ product }) => {
         alt="img-default"
       />
       <div className="grid gap-1 align-center px-3 font-bold">
-        <p className="capitalize text-sm">{name}</p>
+        <p className="capitalize text-sm capitalize">{name}</p>
         <div className="absolute flex bottom-0 right-0 me-2 mb-1">
           <p className="text-md">${price}</p>
           <TagIcon className="h-6 w-6 text-lime-500" />

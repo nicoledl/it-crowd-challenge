@@ -108,7 +108,7 @@ const ProductsList = () => {
           style="bg-lime-400 text-lime-50"
         />
       )}
-      <div className="grid w-fit my-6">
+      <div className="grid w-fit my-6 mx-2 sm:mx-0">
         <select onChange={handleBrandSelected} className="rounded border p-1">
           <option value={null}>Select a brand</option>
           {brands?.map((brand) => (
@@ -138,7 +138,7 @@ const ProductsList = () => {
                 } grid grid-cols-4 sm:grid-cols-6 text-center items-center h-fit py-1 `}
               >
                 <div className="sm:block hidden">{product.id}</div>
-                <div className="flex col-span-2 items-center gap-2">
+                <div className="flex col-span-2 items-center gap-2 capitalize">
                   <img
                     src={
                       product.image_url

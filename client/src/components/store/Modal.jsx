@@ -29,7 +29,7 @@ const Modal = ({ closeMondal, product }) => {
             alt="img-default"
           />
           <div className="details-modal p-4 animate-fade animate-once animate-duration-1000 animate-normal">
-            <p className="text-xl sm:text-2xl underline underline-offset-2 text-rose-500">
+            <p className="capitalize  text-xl sm:text-2xl underline underline-offset-2 text-rose-500">
               {name}
             </p>
             <p className="text-md sm:text-xl my-2 text-gray-500 text-bold">

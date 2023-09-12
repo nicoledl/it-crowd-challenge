@@ -8,7 +8,7 @@ const Navbar = ({ title }) => {
       <div className="text-3xl uppercase">{title}</div>
       <Link href="/admin/create">
         <div className="flex text-xl justify-end hover:text-rose-200 duration-150 transition">
-          <PlusCircleIcon width={25} />
+          <PlusCircleIcon width={25} className="bg-rose-700" />
           add new product/brand
         </div>
       </Link>
