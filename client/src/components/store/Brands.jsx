@@ -45,7 +45,7 @@ const Brands = () => {
                   }
                   alt={brand.name}
                   onClick={() => onClick(brand.name)}
-                  className="rounded object-contain cursor-pointer dark:invert"
+                  className="rounded object-contain cursor-pointer dark:invert hover:animate-pulse animate-once"
                 />
               ) : (
                 <p

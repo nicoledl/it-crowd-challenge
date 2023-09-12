@@ -3,7 +3,7 @@ import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import LoginForm from "./LoginForm";
-import Header from "./Header";
+import Header from "../common/Header";
 
 const Login = () => {
   const router = useRouter();
@@ -12,15 +12,11 @@ const Login = () => {
     const token = localStorage.getItem("token");
 
     axios
-      .post(
-        `${process.env.NEXT_PUBLIC_URL_SERVER}/auth/verify-token`,
-        null,
-        {
-          headers: {
-            authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .post(`${process.env.NEXT_PUBLIC_URL_SERVER}/auth/verify-token`, null, {
+        headers: {
+          authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         router.push("/admin");
       })
