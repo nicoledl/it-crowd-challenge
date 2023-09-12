@@ -108,7 +108,7 @@ const LoginForm = () => {
           </div>
           <button
             type="submit"
-            className="bg-rose-500 text-white rounded-full w-fit px-3 hover:bg-rose-700 ease-out duration-300 "
+            className="bg-rose-500 text-white rounded-full w-fit px-3 hover:bg-rose-700 ease-out duration-300 focus:animate-pulse animate-infinite animate-duration-500"
           >
             sign in
           </button>

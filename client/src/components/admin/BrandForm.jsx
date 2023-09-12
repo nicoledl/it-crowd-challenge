@@ -68,7 +68,7 @@ const BrandForm = () => {
         <div>
           <button
             type="submit"
-            className="hover:opacity-50 bg-gray-700 text-white p-2 rounded"
+            className="hover:opacity-50 bg-gray-700 text-white p-2 rounded focus:animate-pulse animate-infinite animate-duration-500"
           >
             Submit
           </button>

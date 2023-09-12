@@ -134,13 +134,17 @@ const ProductForm = () => {
             onChange={handleChange}
             className={buttonStyle + caractersControl}
             required
+            maxlength="210"
+            rows="5"
+            cols="60"
+            style={{ resize: "none" }}
           ></textarea>
           <p>{200 - formData.description.length}</p>
         </div>
         <div>
           <button
             type="submit"
-            className="hover:opacity-50 bg-gray-700 text-white p-2 rounded mt-4 md:m-0"
+            className="hover:opacity-50 bg-gray-700 text-white p-2 rounded mt-4 md:m-0 focus:animate-pulse animate-infinite animate-duration-500"
           >
             Submit
           </button>

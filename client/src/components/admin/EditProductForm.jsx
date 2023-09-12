@@ -14,7 +14,7 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
   const { id, name, description, image_url, price, brandId } = product;
   const [brands, setBrands] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
-  
+
   const [caractersControl, setCaractersControl] = useState("");
 
   const [formData, setFormData] = useState({
@@ -158,13 +158,17 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
               onChange={handleChange}
               className={inputStyle + caractersControl}
               required
+              maxlength="210"
+              rows="5"
+              cols="60"
+              style={{ resize: "none" }}
             ></textarea>
             <p>{200 - formData.description.length}</p>
           </div>
           <div className="text-start my-2">
             <button
               type="submit"
-              className="hover:opacity-50 bg-gray-700 text-white p-2 rounded mt-4 md:m-0  transition duration-150"
+              className="hover:opacity-50 bg-gray-700 text-white p-2 rounded mt-4 md:m-0  transition duration-150 focus:animate-pulse animate-infinite animate-duration-500"
             >
               Submit
             </button>
