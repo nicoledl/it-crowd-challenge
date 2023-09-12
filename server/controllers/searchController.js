@@ -12,17 +12,17 @@ async function searchProducts(req, res) {
         [Op.or]: [
           {
             name: {
-              [Op.like]: `%${keyword}%`,
+              [Op.iLike]: `%${keyword}%`,
             },
           },
           {
             description: {
-              [Op.like]: `%${keyword}%`, 
+              [Op.iLike]: `%${keyword}%`, 
             },
           },
           {
             "$brand.name$": {
-              [Op.like]: `%${keyword}%`,
+              [Op.iLike]: `%${keyword}%`,
             },
           },
         ],
@@ -52,17 +52,17 @@ async function searchProductsPerPage(req, res) {
         [Op.or]: [
           {
             name: {
-              [Op.like]: `%${keyword}%`,
+              [Op.iLike]: `%${keyword}%`,
             },
           },
           {
             description: {
-              [Op.like]: `%${keyword}%`,
+              [Op.iLike]: `%${keyword}%`,
             },
           },
           {
             "$brand.name$": {
-              [Op.like]: `%${keyword}%`,
+              [Op.iLike]: `%${keyword}%`,
             },
           },
         ],
