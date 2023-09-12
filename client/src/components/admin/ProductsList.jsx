@@ -120,7 +120,7 @@ const ProductsList = () => {
       </div>
       <div className="container mx-auto">
         <div className="grid  divide-y dark:divide-black">
-          <div className="grid grid-cols-4 sm:grid-cols-6 text-center py-3">
+          <div className="grid grid-cols-4 sm:grid-cols-6 text-center py-3 text-bold">
             <div className="sm:block hidden">#</div>
             <div className="col-span-2">Name</div>
             <div className="sm:block hidden">Brand</div>
@@ -138,7 +138,7 @@ const ProductsList = () => {
                 } grid grid-cols-4 sm:grid-cols-6 text-center items-center h-fit py-1 `}
               >
                 <div className="sm:block hidden">{product.id}</div>
-                <div className="flex col-span-2 items-center gap-2 capitalize">
+                <div className="flex col-span-2 items-center gap-2 capitalize ms-1 sm:ms-0">
                   <img
                     src={
                       product.image_url
