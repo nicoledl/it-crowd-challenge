@@ -22,7 +22,7 @@ const BrandForm = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL_SERVER}/brands`,
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands`,
         formData,
         {
           headers: {
@@ -31,7 +31,7 @@ const BrandForm = () => {
         }
       );
       console.log("Brand created:", response.data);
-      window.location.href = "/admin";
+      window.location.href = "/admin/brands";
     } catch (error) {
       console.error("Error creating brand:", error);
     }

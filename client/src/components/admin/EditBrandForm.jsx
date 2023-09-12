@@ -27,7 +27,7 @@ const EditBrandForm = ({ brand, closeEdit, actionState }) => {
 
     try {
       const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_URL_SERVER}/brands/${id}`,
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/${id}`,
         formData,
         {
           headers: {

@@ -18,7 +18,7 @@ export default function RootLayout({ children }) {
   return (
     <html lang="en">
       <body
-        className={`${inter.variable} ${montserrat.variable} dark:bg-gray-600 ease-in-out duration-300 container mx-auto text-[#262626] dark:text-white`}
+        className={`${inter.variable} ${montserrat.variable} ease-in-out duration-300 container mx-auto text-[#262626] dark:text-white`}
       >
         <Providers>
           {children}

@@ -9,7 +9,7 @@ import MessageAlert from "../common/Message";
 
 const ProductsList = () => {
   const token = localStorage.getItem("token");
-  
+
   const [brands, setBrands] = useState([]);
   const [editWindowId, setEditWindowId] = useState(null);
   const [action, setAction] = useState(true);
@@ -18,7 +18,7 @@ const ProductsList = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/${page}`)
       .then((response) => {
         setBrands(response.data);
         setAction(true);
@@ -30,7 +30,7 @@ const ProductsList = () => {
 
   const deleteBrand = (id) => {
     axios
-      .delete(`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/${id}`, {
+      .delete(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/${id}`, {
         headers: {
           authorization: `Bearer ${token}`,
         },
@@ -83,7 +83,7 @@ const ProductsList = () => {
                 } grid grid-cols-3 text-center items-center h-fit py-1`}
               >
                 <div>{brand.id}</div>
-                <div className="flex items-center gap-2">
+                <div className="flex items-center gap-5">
                   <img
                     src={
                       brand.image_url
@@ -91,7 +91,7 @@ const ProductsList = () => {
                         : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
                     }
                     alt={brand.name}
-                    className="w-[50px] h-[50px] rounded-full object-cover"
+                    className="w-[50px] h-[50px] rounded object-cover"
                   />
                   {brand.name ? brand.name : ""}
                 </div>
@@ -130,7 +130,7 @@ const ProductsList = () => {
       </div>
       <Pagination
         setPage={setPage}
-        url={`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/`}
+        url={`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/`}
       />
     </>
   );

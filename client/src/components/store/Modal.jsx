@@ -33,7 +33,9 @@ const Modal = ({ closeMondal, product }) => {
               {name}
             </p>
             <p className="text-2xl text-gray-500">{brand ? brand.name : ""}</p>
-            <p className="text-lg">{description}</p>
+            <p className="text-lg" style={{ overflowWrap: "anywhere" }}>
+              {description}
+            </p>
             <div className="absolute flex bottom-0 right-0 me-2 mb-1">
               <p className="text-3xl">${price}</p>
               <TagIcon className="h-8 w-8 text-lime-500" />

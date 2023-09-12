@@ -32,7 +32,7 @@ const LoginForm = () => {
     e.preventDefault();
     try {
       const response = await axios.post(
-        "https://it-crowd-challenge.up.railway.app/auth/login",
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/auth/login`,
         formData,
       );
       const token = response.data.token;

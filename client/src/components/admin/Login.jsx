@@ -13,7 +13,7 @@ const Login = () => {
 
     axios
       .post(
-        `https://it-crowd-challenge.up.railway.app/auth/verify-token`,
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/auth/verify-token`,
         null,
         {
           headers: {

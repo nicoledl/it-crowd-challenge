@@ -4,10 +4,14 @@ import { useTheme } from 'next-themes';
 
 const ThemeSwitcher = () => {
   const [mounted, setMounted] = useState(false);
-  const { theme, setTheme } = useTheme();
+  const { theme, setTheme } = useTheme('light');
 
   useEffect(() => {
     setMounted(true);
+
+    if (theme === 'dark') {
+      setTheme('light')
+    }
   }, []);
 
   if (!mounted) {

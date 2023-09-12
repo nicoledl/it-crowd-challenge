@@ -9,7 +9,7 @@ const Brands = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/${page}`)
       .then((response) => setBrands(response.data))
       .catch((error) => console.error("Error al obtener los datos:", error));
   }, []);
@@ -38,7 +38,7 @@ const Brands = () => {
           ))}
         </div>
       </section>
-      <Pagination setPage={setPage} url={`${process.env.NEXT_PUBLIC_URL_SERVER}/brands/`} />
+      <Pagination setPage={setPage} url={`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/`} />
     </>
   );
 };

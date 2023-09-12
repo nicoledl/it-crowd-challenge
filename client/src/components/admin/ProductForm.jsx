@@ -23,7 +23,7 @@ const ProductForm = () => {
     async function fetchBrands() {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL_SERVER}/brands`
+          `${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands`
         );
         setBrands(response.data);
       } catch (error) {
@@ -44,7 +44,7 @@ const ProductForm = () => {
 
     try {
       const response = await axios.post(
-        `${process.env.NEXT_PUBLIC_URL_SERVER}/products`,
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/api/products`,
         formData,
         {
           headers: {

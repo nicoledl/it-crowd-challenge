@@ -14,7 +14,9 @@ const SearchResults = () => {
     if (!products) {
       try {
         axios
-          .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/search/page${search}&page=${page}`)
+          .get(
+            `${process.env.NEXT_PUBLIC_URL_SERVER}/api/search/page${search}&page=${page}`
+          )
           .then((response) => setProducts(response.data));
       } catch (error) {
         console.error(error);
@@ -35,10 +37,16 @@ const SearchResults = () => {
   return (
     <div>
       <Products products={products} />
-      <Pagination
-        setPage={setPage}
-        url={`${process.env.NEXT_PUBLIC_URL_SERVER}/search${search}`}
-      />
+      {products.length !== 0 ? (
+        <Pagination
+          setPage={setPage}
+          url={`${process.env.NEXT_PUBLIC_URL_SERVER}/products`}
+        />
+      ) : (
+        <p className="animate-bounce animate-infinite text-center mt-44 text-3xl">
+          Not products founded... :(
+        </p>
+      )}
     </div>
   );
 };

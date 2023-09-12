@@ -27,7 +27,7 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
     async function fetchBrands() {
       try {
         const response = await axios.get(
-          `${process.env.NEXT_PUBLIC_URL_SERVER}/brands`
+          `${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands`
         );
         setBrands(response.data);
       } catch (error) {
@@ -48,7 +48,7 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
 
     try {
       const response = await axios.put(
-        `${process.env.NEXT_PUBLIC_URL_SERVER}/products/${id}`,
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/api/products/${id}`,
         formData,
         {
           headers: {

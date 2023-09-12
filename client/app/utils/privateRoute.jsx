@@ -17,7 +17,7 @@ export default function PrivateRoute({ children }) {
 
     axios
       .post(
-        "https://it-crowd-challenge.up.railway.app/auth/verify-token",
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/auth/verify-token`,
         null,
         {
           headers: {
@@ -27,7 +27,6 @@ export default function PrivateRoute({ children }) {
       )
       .then(() => {
         setPass(true);
-        console.log("Token válido");
       })
       .catch((error) => {
         console.error("Error de verificación de token:", error);
