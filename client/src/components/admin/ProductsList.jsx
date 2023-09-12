@@ -141,8 +141,8 @@ const ProductsList = () => {
                 <div className="flex col-span-2 items-center gap-2">
                   <img
                     src={
-                      products.image_url
-                        ? products.image_url
+                      product.image_url
+                        ? product.image_url
                         : "https://www.pulsorunner.com/wp-content/uploads/2014/10/default-img.gif"
                     }
                     alt={product.name}

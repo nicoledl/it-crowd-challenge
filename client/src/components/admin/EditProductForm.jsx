@@ -14,6 +14,8 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
   const { id, name, description, image_url, price, brandId } = product;
   const [brands, setBrands] = useState([]);
   const [showAlert, setShowAlert] = useState(false);
+  
+  const [caractersControl, setCaractersControl] = useState("");
 
   const [formData, setFormData] = useState({
     name: name,
@@ -40,6 +42,16 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "description" && value.length > 200) {
+      setCaractersControl("border border-red-500");
+      const truncatedValue = value.substring(0, 200);
+      setFormData({ ...formData, [name]: truncatedValue });
+    } else {
+      setCaractersControl("");
+      setFormData({ ...formData, [name]: value });
+    }
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -144,9 +156,10 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
               name="description"
               value={formData.description}
               onChange={handleChange}
-              className={inputStyle}
+              className={inputStyle + caractersControl}
               required
             ></textarea>
+            <p>{200 - formData.description.length}</p>
           </div>
           <div className="text-start my-2">
             <button

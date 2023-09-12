@@ -10,6 +10,7 @@ const ProductForm = () => {
   const token = localStorage.getItem("token");
 
   const [brands, setBrands] = useState([]);
+  const [caractersControl, setCaractersControl] = useState("");
 
   const [formData, setFormData] = useState({
     name: "",
@@ -36,6 +37,16 @@ const ProductForm = () => {
 
   const handleChange = (e) => {
     const { name, value } = e.target;
+
+    if (name === "description" && value.length > 200) {
+      setCaractersControl("border border-red-500");
+      const truncatedValue = value.substring(0, 200);
+      setFormData({ ...formData, [name]: truncatedValue });
+    } else {
+      setCaractersControl("");
+      setFormData({ ...formData, [name]: value });
+    }
+
     setFormData({ ...formData, [name]: value });
   };
 
@@ -121,9 +132,10 @@ const ProductForm = () => {
             name="description"
             value={formData.description}
             onChange={handleChange}
-            className={buttonStyle}
+            className={buttonStyle + caractersControl}
             required
           ></textarea>
+          <p>{200 - formData.description.length}</p>
         </div>
         <div>
           <button
