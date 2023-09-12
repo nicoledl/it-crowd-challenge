@@ -59,15 +59,17 @@ const Brands = () => {
                   )}
                 </div>
               ))}
-              <Pagination
-                setPage={setPage}
-                url={`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/`}
-              />
             </>
           ) : (
             <p className="animate-bounce animate-infinite text-center mt-44 text-3xl">
               There's not brands yet... :(
             </p>
+          )}
+          {brands.length !== 0 && (
+            <Pagination
+              setPage={setPage}
+              url={`${process.env.NEXT_PUBLIC_URL_SERVER}/api/brands/`}
+            />
           )}
         </div>
       </section>
