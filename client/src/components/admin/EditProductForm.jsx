@@ -158,7 +158,7 @@ const EditProductForm = ({ product, closeEdit, actionState }) => {
               onChange={handleChange}
               className={inputStyle + caractersControl}
               required
-              maxlength="210"
+              maxLength="210"
               rows="5"
               cols="60"
               style={{ resize: "none" }}

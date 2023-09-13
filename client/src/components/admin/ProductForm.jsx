@@ -134,7 +134,7 @@ const ProductForm = () => {
             onChange={handleChange}
             className={buttonStyle + caractersControl}
             required
-            maxlength="210"
+            maxLength="210"
             rows="5"
             cols="60"
             style={{ resize: "none" }}

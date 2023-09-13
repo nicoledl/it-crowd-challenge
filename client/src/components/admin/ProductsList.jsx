@@ -98,6 +98,7 @@ const ProductsList = () => {
   const handleBrandSelected = (e) => {
     const value = e.target.value;
     setSortBrand(value);
+    setPage(1);
   };
 
   return (
