@@ -42,7 +42,7 @@ const ProductsList = () => {
     }
 
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/products/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/products/page/${page}`)
       .then((response) => {
         setProducts(response.data);
         setAction(true);

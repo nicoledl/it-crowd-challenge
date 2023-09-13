@@ -11,7 +11,7 @@ const Store = () => {
 
   useEffect(() => {
     axios
-      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/products/${page}`)
+      .get(`${process.env.NEXT_PUBLIC_URL_SERVER}/api/products/page/${page}`)
       .then((res) => {
         setProductsPerPage(res.data);
       })
