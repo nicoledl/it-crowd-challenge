@@ -26,8 +26,10 @@ const Store = () => {
         className="absolute top-0 bottom-0 left-0 right-0 m-auto h-screen justify-center flex items-center"
         style={{ alignItems: "center", zIndex: "-2" }}
       >
-        <p>This may take a couple of minutes.</p>
-        <BeatLoader color="#F43F5E" size={25} />
+        <div className="grid">
+          <p>This may take a couple of minutes.</p>
+          <BeatLoader color="#F43F5E" size={25} />
+        </div>
       </div>
     );
   }
