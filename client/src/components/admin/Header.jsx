@@ -1,5 +1,5 @@
 import Link from "next/link";
-import ThemeSwitcher from "../../../app/utils/ThemeSwitcher";
+import ThemeSwitcher from "../../../app/services/ThemeSwitcher";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import LogoutButton from "./LogoutButton";
 import Sidebar from "./Sidebar";

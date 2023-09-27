@@ -1,5 +1,5 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
-import ThemeSwitcher from "../../../app/utils/ThemeSwitcher";
+import ThemeSwitcher from "../../../app/services/ThemeSwitcher";
 import Link from "next/link";
 
 const Header = () => {

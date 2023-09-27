@@ -11,18 +11,15 @@ const SearchResults = () => {
   const [page, setPage] = useState(1);
 
   useEffect(() => {
-    if (!products) {
-      try {
-        axios
-          .get(
-            `${process.env.NEXT_PUBLIC_URL_SERVER}/api/search/page${search}&page=${page}`
-          )
-          .then((response) => setProducts(response.data));
-      } catch (error) {
-        console.error(error);
-      }
-    }
-  }, [products]);
+    axios
+      .get(
+        `${process.env.NEXT_PUBLIC_URL_SERVER}/api/search/page${search}&page=${page}`
+      )
+      .then((response) => setProducts(response.data))
+      .catch((error) => {
+        console.error("Error al obtener los datos:", error);
+      });
+  }, []);
 
   if (!products) {
     return (

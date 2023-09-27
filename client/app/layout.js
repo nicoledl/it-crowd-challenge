@@ -1,5 +1,5 @@
 import "../src/styles/globals.css";
-import Providers from "./utils/prividers";
+import Providers from "./services/prividers";
 
 // Fonts
 import { Inter, Montserrat } from "next/font/google";
