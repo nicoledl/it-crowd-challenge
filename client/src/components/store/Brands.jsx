@@ -25,8 +25,10 @@ const Brands = () => {
         className="absolute top-0 bottom-0 left-0 right-0 m-auto h-screen justify-center flex items-center"
         style={{ alignItems: "center", zIndex: "-2" }}
       >
-        <div className="grid">
-          <p>This may take a couple of minutes.</p>
+        <div className="grid justify-center items-center">
+          <p className="text-center mt-44 text-xl">
+            This may take a couple of minutes.
+          </p>
           <div>
             <BeatLoader color="#F43F5E" size={25} />
           </div>
