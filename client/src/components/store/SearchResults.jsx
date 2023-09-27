@@ -31,7 +31,7 @@ const SearchResults = () => {
           <div className="justify-center flex items-center w-full">
             <BeatLoader color="#F43F5E" size={25} />
           </div>
-          <p className="text-center mt-44 text-xl text-stone-950/60">
+          <p className="text-center mt-2 text-xl text-stone-950/60">
             This may take a couple of minutes.
           </p>
         </div>
