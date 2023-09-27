@@ -42,7 +42,7 @@ export default function PrivateRoute({ children }) {
             <BeatLoader color="#F43F5E" size={25} />
           </div>
           <p className="text-center mt-2 text-xl text-stone-950/60 dark:text-white">
-            Cargando...
+            Loading...
           </p>
         </div>
       </div>
