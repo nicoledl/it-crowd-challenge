@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import { useRouter } from "next/navigation";
 import axios from "axios";
+import { BeatLoader } from "react-spinners";
 
 export default function PrivateRoute({ children }) {
   const router = useRouter();
@@ -16,15 +17,11 @@ export default function PrivateRoute({ children }) {
     }
 
     axios
-      .post(
-        `${process.env.NEXT_PUBLIC_URL_SERVER}/auth/verify-token`,
-        null,
-        {
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-        }
-      )
+      .post(`${process.env.NEXT_PUBLIC_URL_SERVER}/auth/verify-token`, null, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
       .then(() => {
         setPass(true);
       })
@@ -36,8 +33,18 @@ export default function PrivateRoute({ children }) {
 
   if (!pass) {
     return (
-      <div className="w-full flex justify-center content-center text-mustard text-bold">
-        cargando...
+      <div
+        className="absolute top-0 bottom-0 left-0 right-0 m-auto h-screen justify-center flex items-center"
+        style={{ alignItems: "center", zIndex: "-2" }}
+      >
+        <div className="grid">
+          <div className="justify-center flex items-center w-full">
+            <BeatLoader color="#F43F5E" size={25} />
+          </div>
+          <p className="text-center mt-2 text-xl text-stone-950/60 dark:text-white">
+            Cargando...
+          </p>
+        </div>
       </div>
     );
   }
