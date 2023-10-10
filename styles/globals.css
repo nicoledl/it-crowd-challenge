@@ -1,0 +1,24 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body {
+  font-family: var(--font-montserrat);
+}
+
+input,
+textarea {
+  outline: none;
+  padding: 0 5px;
+}
+input:focus,
+textarea:focus {
+  background-color: #fcfcfc;
+}
+
+.add {
+  display: flex;
+  justify-content: space-evenly;
+  flex-wrap: wrap;
+  margin-top: 50px;
+}
