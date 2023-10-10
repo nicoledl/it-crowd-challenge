@@ -1,7 +1,7 @@
 import PrivateRoute from "../services/privateRoute";
 import Header from "./components/Header";
 
-export default function RootLayout({ children }) {
+const AdminLayout = ({ children }) => {
   return (
     <div>
       <PrivateRoute>
@@ -10,4 +10,6 @@ export default function RootLayout({ children }) {
       </PrivateRoute>
     </div>
   );
-}
+};
+
+export default AdminLayout;

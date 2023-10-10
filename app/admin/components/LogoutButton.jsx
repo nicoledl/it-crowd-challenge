@@ -2,7 +2,7 @@
 import { ArrowLeftOnRectangleIcon } from "@heroicons/react/24/solid";
 import { useRouter } from "next/navigation";
 
-function LogoutButton() {
+const LogoutButton = () => {
   const router = useRouter();
 
   const handleLogout = () => {
@@ -17,6 +17,6 @@ function LogoutButton() {
       </div>
     </button>
   );
-}
+};
 
 export default LogoutButton;

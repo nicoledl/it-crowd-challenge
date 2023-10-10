@@ -14,16 +14,16 @@ export const metadata = {
   description: "IT Crowd Challenge by create next app",
 };
 
-export default function RootLayout({ children }) {
+const RootLayout = ({ children }) => {
   return (
     <html lang="en">
       <body
-        // className={`${inter.variable} ${montserrat.variable} ease-in-out duration-300 container mx-auto text-[#262626] dark:text-white`}
+        className={`${inter.variable} ${montserrat.variable} ease-in-out duration-300 text-[#262626] dark:text-white`}
       >
-        <Providers>
-          {children}
-        </Providers>
+        <Providers>{children}</Providers>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

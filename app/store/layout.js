@@ -3,7 +3,7 @@ import Header from "../components/Header";
 import Navbar from "../components/Navbar";
 import SearchInput from "./components/SearchInput";
 
-export default function RootLayout({ children }) {
+const StoreLayout = ({ children }) => {
   return (
     <div className="container mx-auto">
       <Header />
@@ -13,4 +13,6 @@ export default function RootLayout({ children }) {
       <Footer />
     </div>
   );
-}
+};
+
+export default StoreLayout;

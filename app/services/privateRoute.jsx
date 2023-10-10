@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import axios from "axios";
 import { BeatLoader } from "react-spinners";
 
-export default function PrivateRoute({ children }) {
+const PrivateRoute = ({ children }) => {
   const router = useRouter();
   const [pass, setPass] = useState(false);
 
@@ -50,4 +50,6 @@ export default function PrivateRoute({ children }) {
   }
 
   return <div>{children}</div>;
-}
+};
+
+export default PrivateRoute;
