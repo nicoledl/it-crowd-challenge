@@ -17,7 +17,7 @@ const Modal = ({ closeMondal, product }) => {
 
   return (
     <div className="modal w-screen h-screen top-0 left-0 fixed z-20 bg-black/10 backdrop-blur">
-      <div className="animate-jump-in animate-once animate-delay-[200ms] animate-normal drop-shadow-lg absolute m-auto top-0 bottom-0 left-0 right-0 w-[300px] md:w-[600px] h-[500px] md:h-[400px] dark:bg-neutral-800 dark:text-white bg-white pt-8 p-2 md:pt-3 md:p-3">
+      <div className="animate-jump-in animate-once animate-delay-[200ms] animate-normal drop-shadow-lg absolute m-auto top-0 bottom-0 left-0 right-0 w-[300px] md:w-[600px] h-fit md:h-[400px] dark:bg-neutral-800 dark:text-white bg-white pt-8 p-2 md:pt-3 md:p-3">
         <div className="modal-content md:flex h-full">
           <img
             className="image-modal object-cover md:w-[180px] w-full h-[50%] md:h-full hover:h-full md:hover:w-full ease-out duration-300 "
@@ -28,7 +28,7 @@ const Modal = ({ closeMondal, product }) => {
             }
             alt="img-default"
           />
-          <div className="details-modal p-4 animate-fade animate-once animate-duration-1000 animate-normal">
+          <div className="details-modal p-4 animate-fade animate-once animate-duration-1000 animate-normal ">
             <p className="capitalize text-xl sm:text-2xl underline underline-offset-2 text-rose-500">
               {name}
             </p>
@@ -42,7 +42,7 @@ const Modal = ({ closeMondal, product }) => {
               {description}
             </p>
             <div className="absolute flex bottom-0 right-0 me-3 mb-2">
-              <p className="text-3xl">${price}</p>
+              <p className="text-2xl">${price}</p>
               <TagIcon className="h-8 w-8 text-lime-500" />
             </div>
           </div>
