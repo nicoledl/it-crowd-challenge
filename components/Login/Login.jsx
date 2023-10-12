@@ -2,8 +2,7 @@
 import axios from "axios";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
-import LoginForm from "./LoginForm";
-import Header from "../../components/Header";
+import { Header, LoginForm } from "..";
 
 const Login = () => {
   const router = useRouter();

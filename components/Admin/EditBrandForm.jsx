@@ -2,7 +2,7 @@
 import React, { useState } from "react";
 import axios from "axios";
 import { XMarkIcon } from "@heroicons/react/24/solid";
-import MessageAlert from "../../components/Message";
+import MessageAlert from "../Home/Message";
 
 //styles
 const buttonStyle = "border border-gray-200 rounded dark:focus:text-black";

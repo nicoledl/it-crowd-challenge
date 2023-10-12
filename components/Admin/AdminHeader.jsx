@@ -1,10 +1,10 @@
 import Link from "next/link";
-import ThemeSwitcher from "../../services/ThemeSwitcher";
+import ThemeSwitcher from "../../app/services/ThemeSwitcher";
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
 import LogoutButton from "./LogoutButton";
 import Sidebar from "./Sidebar";
 
-const Header = () => {
+const AdminHeader = () => {
   return (
     <header className="relative flex justify-between text-gray-800 dark:text-white p-2 py-5">
       <Link
@@ -35,4 +35,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default AdminHeader;

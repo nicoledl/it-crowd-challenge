@@ -1,4 +1,4 @@
-import BrandsList from "../components/BrandsList";
+import BrandsList from "../../../components/Admin/BrandsList";
 
 const BrandsListPage = () => {
   return <BrandsList />;

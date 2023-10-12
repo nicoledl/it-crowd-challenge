@@ -2,7 +2,7 @@
 import { PlusCircleIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 
-const Navbar = ({ title }) => {
+const AddProductPanel = ({ title }) => {
   return (
     <nav className="grid gap-5 px-1 mg:gap-1 md:flex md:justify-between align-center text-white font-bold text-lg md:px-12 py-5 bg-rose-500 mb-5">
       <div className="text-xl sm:text-3xl uppercase">{title}</div>
@@ -16,4 +16,4 @@ const Navbar = ({ title }) => {
   );
 };
 
-export default Navbar;
+export default AddProductPanel;

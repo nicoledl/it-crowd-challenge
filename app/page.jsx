@@ -1,7 +1,4 @@
-import Footer from "./components/Footer";
-import Header from "./components/Header";
-import Navbar from "./components/Navbar";
-import Welcome from "./store/components/Welcome";
+import { Footer, Header, Navbar, Welcome } from "../components";
 
 const Home = () => {
   return (

@@ -1,7 +1,7 @@
 "use client";
 import { useState } from "react";
 import { EllipsisVerticalIcon } from "@heroicons/react/24/solid";
-import ThemeSwitcher from "../../services/ThemeSwitcher";
+import ThemeSwitcher from "../../app/services/ThemeSwitcher";
 import Link from "next/link";
 import LogoutButton from "./LogoutButton";
 

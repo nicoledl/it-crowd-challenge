@@ -1,11 +1,11 @@
 import PrivateRoute from "../services/privateRoute";
-import Header from "./components/Header";
+import AdminHeader from "../../components/Admin/AdminHeader";
 
 const AdminLayout = ({ children }) => {
   return (
     <div>
       <PrivateRoute>
-        <Header />
+        <AdminHeader />
         {children}
       </PrivateRoute>
     </div>

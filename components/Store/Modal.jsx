@@ -1,3 +1,4 @@
+"use client"
 import { TagIcon, XMarkIcon } from "@heroicons/react/24/solid";
 import $ from "jquery";
 import { useEffect } from "react";

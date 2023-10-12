@@ -1,5 +1,5 @@
-import Navbar from "./components/Navbar";
-import ProductsList from "./components/ProductsList";
+import Navbar from "../../components/Admin/AddProductPanel";
+import ProductsList from "../../components/Admin/ProductsList";
 
 const AdminPage = () => {
   return (

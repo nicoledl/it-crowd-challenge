@@ -1,6 +1,6 @@
-import BrandForm from "../components/BrandForm";
-import Navbar from "../components/Navbar";
-import ProductForm from "../components/ProductForm";
+import BrandForm from "../../../components/Admin/BrandForm";
+import Navbar from "../../../components/Admin/AddProductPanel";
+import ProductForm from "../../../components/Admin/ProductForm";
 
 const CreatePage = () => {
   return (

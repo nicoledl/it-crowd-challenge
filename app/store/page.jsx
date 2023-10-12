@@ -1,6 +1,6 @@
-import Store from "./components/Store";
+import { Store } from "../../components";
 
-const StorePage = () => {
+const StorePage = async () => {
   return <Store />;
 };
 

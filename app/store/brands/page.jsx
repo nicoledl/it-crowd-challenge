@@ -1,4 +1,4 @@
-import Brands from "../components/Brands";
+import { Brands } from "../../../components";
 
 const BrandsPage = () => {
   return <Brands />;

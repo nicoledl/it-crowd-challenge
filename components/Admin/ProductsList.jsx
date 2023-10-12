@@ -3,8 +3,8 @@ import { useEffect, useState } from "react";
 import { Cog6ToothIcon, TrashIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import EditProductForm from "./EditProductForm";
-import Pagination from "../../store/components/Pagination";
-import MessageAlert from "../../components/Message";
+import Pagination from "../Store/Pagination";
+import MessageAlert from "../Home/Message";
 
 const ProductsList = () => {
   const token = localStorage.getItem("token");

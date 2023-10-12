@@ -2,7 +2,7 @@
 import { XMarkIcon } from "@heroicons/react/24/solid";
 import axios from "axios";
 import { useEffect, useState } from "react";
-import MessageAlert from "../../components/Message";
+import MessageAlert from "../Home/Message";
 
 //styles
 const inputStyle =

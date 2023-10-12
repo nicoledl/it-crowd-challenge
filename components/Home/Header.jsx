@@ -1,8 +1,8 @@
 import { ShoppingCartIcon } from "@heroicons/react/24/solid";
-import ThemeSwitcher from "../services/ThemeSwitcher";
+import ThemeSwitcher from "../../app/services/ThemeSwitcher";
 import Link from "next/link";
 
-const Header = () => {
+const HomeButton = () => {
   return (
     <header className="flex justify-between p-2">
       <span className="rounded-t-lg rounded-full mt-[-100px] absolute bg-mustard w-[250px] sm:w-[400px] md:w-[600px] h-[250px] sm:h-[300px] left-0 right-0 mx-auto z-[-1]"></span>
@@ -17,4 +17,4 @@ const Header = () => {
   );
 };
 
-export default Header;
+export default HomeButton;
